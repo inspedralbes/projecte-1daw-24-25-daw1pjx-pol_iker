@@ -2,3 +2,6 @@
 Diagrama casos d'us
 ![Captura de pantalla a 2025-04-24 09-03-51](https://github.com/user-attachments/assets/6a05a830-77f0-4f1f-9a40-98b518543efd)
 
+Esquema de pantallas de la aplicacio
+![Captura de pantalla a 2025-04-22 13-10-33](https://github.com/user-attachments/assets/15453532-6c7b-4681-848c-7d6b1e5d4fb3)
+
