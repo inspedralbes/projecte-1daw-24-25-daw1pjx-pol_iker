@@ -1,0 +1,88 @@
+body{
+    margin: 0%;
+    font-family:cursive  !important;
+    background-image: url(imagenfondo.jpg);
+}
+h1{
+    text-align: center;
+    text-shadow: 2px 2px black;
+    color:white !important;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    margin: 0%;
+    background-color: rgba(31, 122, 140, 0.63);
+    padding: 20px;
+}
+
+fieldset{
+    position: fixed;
+    top: 6%;
+    border-radius: 20px;
+    border-color:rgb(31, 122, 140);
+    text-align: center;
+    width: 48%;
+    background-color: azure;
+    transform: translate(50%, 50%);
+
+}
+
+label{
+    color:rgb(31, 122, 140);
+    font-family:cursive;
+    text-shadow: 1px 1px black;
+}
+
+input{
+    height: 20px; 
+    width: 500px;
+    text-align: center;
+}
+textarea{
+    width: 500px;
+
+}
+select{
+    width: 500px;
+    text-align: center;
+}
+
+label::before{
+    content: "- ";
+    color: rgb(255, 255, 255);
+}
+
+button{
+    text-align: center;
+    color: rgb(225, 229, 242);
+    background-color:rgb(31, 122, 140);
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+    font-family:cursive;
+
+}
+
+.medio{
+    position: fixed;
+    background-color: azure;
+    position: absolute;
+    border-radius: 5px;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.card-body{
+    background-color: white;
+    border-radius: 5px;
+
+}
+
+.mt-5{
+    
+}
+.ccontainer{
+    text-decoration: none;
+}
