@@ -8,3 +8,6 @@ Esquema de pantallas de la aplicacio
 
 ![Captura de pantalla a 2025-04-22 13-10-33](https://github.com/user-attachments/assets/15453532-6c7b-4681-848c-7d6b1e5d4fb3)
 
+Disseny del model E-R (Entitat-Relació)
+
+![Projecte Disseny BDD](https://github.com/user-attachments/assets/a724f870-0c0b-45ea-9d01-6d0dd6c3d3a9)
