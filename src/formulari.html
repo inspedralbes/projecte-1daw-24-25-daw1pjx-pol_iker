@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="proyecte.css">
+    <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary"><a href="index.html">PAGINA INICIAL</a></button>
+            <button type="button" class="btn btn-primary"><a href="">LLISTA DE INICIDÈNCIES</a></button>
+          </div> 
+        <h1>FORMULARI DE INICIDENCIAS</h1>
+    
+    </header>
+    
+
+    <fieldset><form method="POST" action="http://a24ikematgar.daw.inspedralbes.cat/AA/validacioFormulari.html">
+      <label for="nom">Nom:</label><br>
+      <input type="text" name="nom" id="nom" required><br>
+      
+      <label for="Cognom">Cognom:</label><br>
+      <input type="text" name="Cogmon" id="Cogmon" required><br>
+
+      <label for="Email">Email:</label><br>
+      <input type="email" name="Email" id="Email" required><br>
+      
+      
+      
+      <label for="departament">Departament:</label> <br>
+        <select name="departament" id="departament" required>
+          <option value="">-- Selecciona --</option>
+          <option value="Informàtica">Informàtica</option>
+          <option value="Administració">Administració</option>
+          <option value="RRHH">RRHH</option>
+          <option value="Logística">Logística</option>
+        </select> <br><br>
+    
+        <label for="numero">Número de PC:</label> <br>
+        <input type="text" name="numero" id="numero" required> <br><br>
+    
+       <label for="Tipus_incidencia">Tipus d'incidecia:</label> <br>
+        <select name="Tipus_incidencia" id="Tipus_incidencia" required>
+            <option value="">-- Selecciona --</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Software">Software</option>
+            <option value="Otro">Otro</option>
+        </select> <br><br>
+       
+        <label for="descripcio">Descripció de la incidència:</label> <br>
+        <textarea rows="5" cols="50" style="resize: none;" name="descripcio" id="descripcio" required></textarea>
+        <br><br>
+    
+        <button type="submit">ENVIAR</button>
+      </form></fieldset>
+
+</body>
+</html>
