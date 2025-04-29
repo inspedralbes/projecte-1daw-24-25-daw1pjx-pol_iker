@@ -13,5 +13,5 @@ Disseny del model E-R (Entitat-Relació)
 ![Projecte Disseny BDD](https://github.com/user-attachments/assets/a724f870-0c0b-45ea-9d01-6d0dd6c3d3a9)
 
 Diagrama software
-![Uploading Diagrama arquitectura Paginas web.jpg…]()
 
+![Diagrama arquitectura Paginas web](https://github.com/user-attachments/assets/e1c4c3f8-89c6-4fad-9218-21e65b37a989)
