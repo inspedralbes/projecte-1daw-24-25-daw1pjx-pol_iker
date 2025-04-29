@@ -11,3 +11,7 @@ Esquema de pantallas de la aplicacio
 Disseny del model E-R (Entitat-Relació)
 
 ![Projecte Disseny BDD](https://github.com/user-attachments/assets/a724f870-0c0b-45ea-9d01-6d0dd6c3d3a9)
+
+Diagrama software
+![Uploading Diagrama arquitectura Paginas web.jpg…]()
+
