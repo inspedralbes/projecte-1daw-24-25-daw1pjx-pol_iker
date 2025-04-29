@@ -61,3 +61,13 @@ CREATE TABLE Incidencies (
     FOREIGN KEY (Empleat) REFERENCES Empleats(DNI)
 );
 
+
+INSERT INTO `Estat` (`ID`, `Estat`) VALUES
+(1,	'No Fet'),
+(2,	'En Proces'),
+(3,	'Fet');
+
+
+INSERT INTO `Tipus_Incidencia` (`ID`, `Tipus_de_Incidencia`) VALUES
+(1,	'Hardware'),
+(2,	'Software');
