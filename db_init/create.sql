@@ -28,11 +28,6 @@ FLUSH PRIVILEGES;
 USE incidencia;
 
 
-CREATE TABLE Tipus_Incidencia (
-    ID INT PRIMARY KEY,
-    Tipus_de_Incidencia VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE Estat (
     ID INT PRIMARY KEY,
     Estat VARCHAR(50) NOT NULL
@@ -43,37 +38,25 @@ CREATE TABLE Departament (
     Nom_Departament VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Empleats (
-    DNI VARCHAR(20) PRIMARY KEY,
-    DEP VARCHAR(20) NOT NULL
-    Rol VARCHAR(50) NOT NULL
-    FOREIGN KEY ()
-);
-
-CREATE TABLE Rol(
-    ID INT PRIMARY KEY,
-    
-)
-
 CREATE TABLE usuari(
     DNI VARCHAR(20) PRIMARY KEY,
     Nom VARCHAR(20) NOT NULL
-)
+);
 
 CREATE TABLE Incidencies (
-    ID INT PRIMARY KEY,
-    Tipus INT NOT NULL,
+    ID INT PRIMARY KEY AUTO_INCREMENT,
     Estat INT NOT NULL,
     Empleat VARCHAR(20) NOT NULL,
-    Numero_PC VARCHAR(50),
+    Departament INT NOT NULL,
     Descripcio TEXT,
     Fecha DATE,
-    FOREIGN KEY (Tipus) REFERENCES Tipus_Incidencia(ID),
     FOREIGN KEY (Estat) REFERENCES Estat(ID),
-    FOREIGN KEY (Empleat) REFERENCES Empleats(DNI)
-    FOREIGN KEY (Departament) REFERENCES Departament(ID)
-    FOREIGN KEY (usuari) REFERENCES usuari(DNI)
+    FOREIGN KEY (Departament) REFERENCES Departament(ID),
+    FOREIGN KEY (Empleat) REFERENCES usuari(DNI)
 );
+
+
+
 
 
 
