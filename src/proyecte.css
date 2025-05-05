@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    background-image: url(imagenfondo.jpg);
+}
+
+h1 {
+    text-align: center;
+    text-shadow: 2px 2px black;
+    color: white !important;
+}
+
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(31, 122, 140, 0.63);
+    padding: 20px;
+    transition: top 0.3s; /* importante para animarlo */
+    z-index: 1000; /* que quede por encima de todo */
+}
+
+
+fieldset {
+    margin: 220px auto 20px auto; /* margen arriba para que no tape el header */
+    width: 90%;
+    max-width: 600px;
+    background-color: azure;
+    border-radius: 20px;
+    border-color: rgb(31, 122, 140);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+label {
+    color: rgb(31, 122, 140);
+    font-family: monospace;
+    text-shadow: 1px 1px black;
+}
+
+input, textarea, select {
+    width: 100%; /* que ocupe todo el ancho disponible */
+    max-width: 500px; /* pero no más grande que esto */
+    margin: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+label::before {
+    content: "- ";
+    color: white;
+}
+
+button {
+    text-align: center;
+    color: rgb(225, 229, 242);
+    background-color: rgb(31, 122, 140);
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+    font-family: monospace;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.validacio{
+    color: rgb(31, 122, 140);
+}
