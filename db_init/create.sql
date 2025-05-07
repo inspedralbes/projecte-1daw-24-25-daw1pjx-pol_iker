@@ -65,7 +65,9 @@ INSERT INTO `Estat` (`ID`, `Estat`) VALUES
 (2,	'En Proces'),
 (3,	'Fet');
 
+INSERT INTO Departament (ID, Nom_Departament) VALUES
+(1, 'Informàtica'),
+(2, 'Administració'),
+(3, 'RRHH'),
+(4, 'Logística');
 
-INSERT INTO `Tipus_Incidencia` (`ID`, `Tipus_de_Incidencia`) VALUES
-(1,	'Hardware'),
-(2,	'Software');
