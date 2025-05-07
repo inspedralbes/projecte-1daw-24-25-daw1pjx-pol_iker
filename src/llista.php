@@ -1,46 +1,43 @@
 <?php
-
-$servername = "db"; 
-$username = "usuari"; 
-$password = "paraula_de_pas"; 
-$dbname = "incidencia"; 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Error de connexió: " . $conn->connect_error);
-}
-
-$sql = "SELECT ID, Estat, Empleat, Departament, Descripcio, Fecha FROM Incidencies";
-$result = $conn->query($sql);
-
-echo "<h1>Llistat d'Incidències</h1>";
-if ($result->num_rows > 0) {
-    echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Empleat</th>
-                <th>Departament</th>
-                <th>Tipus d'incidència</th>
-                <th>Descripció</th>
-            </tr>";
-
-    while ($row = $result->fetch_assoc()) {
-        // Aquí ajustamos los nombres de las columnas a los que realmente existen
-        echo "<tr>
-                <td>" . htmlspecialchars($row["ID"]) . "</td>
-                <td>" . htmlspecialchars($row["Empleat"]) . "</td>
-                <td>" . htmlspecialchars($row["Departament"]) . "</td>
-                <td>" . htmlspecialchars($row["Estat"]) . "</td> <!-- Ajustado 'tipus_incidencia' a 'Estat' -->
-                <td>" . htmlspecialchars($row["Descripcio"]) . "</td>
-            </tr>";
-    }
-    echo "</table>";
-} else {
-    echo "<p>No hi ha dades per mostrar.</p>";
-}
-
-$conn->close();
+require_once 'connection.php';
 ?>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat d'incidències</title>
+</head>
+<body>
+    <h1>Llistat d'incidències</h1>
 
+    
+    <?php
+    $sql = "SELECT i.ID, u.Nom AS EmpleatNom, d.Nom_Departament, e.Estat AS EstatText, i.Descripcio, i.Fecha
+            FROM Incidencies i
+            JOIN usuari u ON i.Empleat = u.DNI
+            JOIN Departament d ON i.Departament = d.ID
+            JOIN Estat e ON i.Estat = e.ID";
 
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
+            echo "<strong>Empleat:</strong> " . htmlspecialchars($row["EmpleatNom"]) . "<br>";
+            echo "<strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"]) . "<br>";
+            echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"]) . "<br>";
+            echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
+            echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
+            echo "<a href='esborrar.php?id=" . $row["ID"] . "'>Esborrar</a></p><hr>";
+        }
+    } else {
+        echo "<p>No hi ha dades a mostrar.</p>";
+    }
+
+    $conn->close();
+    ?>
+
+    <div id="menu">
+        <hr>
+        <p><a href="index.php">Portada</a></p>
+        <p><a href="crear.php">formulari</
