@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    background-image: url(imagenfondo.jpg);
+    background-color: rgb(134, 204, 201);
+}
+
+h1 {
+    text-align: center;
+    text-shadow: 2px 2px black;
+    color: white !important;
+}
+
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(31, 122, 140, 0.63);
+    padding: 20px;
+    transition: top 0.3s; 
+    z-index: 1000; 
+}
+
+fieldset {
+    margin: 220px auto 20px auto; 
+    width: 90%;
+    max-width: 600px;
+    background-color: azure;
+    border-radius: 20px;
+    border-color: rgb(31, 122, 140);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+label {
+    color: rgb(31, 122, 140);
+    font-family: monospace;
+    text-shadow: 1px 1px black;
+}
+
+input, textarea, select {
+    width: 100%;
+    max-width: 500px;
+    margin: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+label::before {
+    content: "- ";
+    color: white;
+}
+
+button {
+    text-align: center;
+    color: rgb(225, 229, 242);
+    background-color: rgb(31, 122, 140);
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+    font-family: monospace;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.validacio{
+    color: rgb(31, 122, 140);
+}
+.llistat{
+    margin: 220px auto 20px auto; 
+    width: 90%;
+    max-width: 600px;
+    background-color: azure;
+    border-radius: 20px;
+    border-color: rgb(31, 122, 140);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.llistat {
+    width: 80%;
+    margin: 30vh auto 0; 
+    padding: 2rem; 
+    color: rgb(31, 122, 140); 
+    text-decoration: none;
+
+}
+
+
+.taula-incidencies {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3vh; 
+}
+
+.taula-incidencies th, .taula-incidencies td {
+    border: 1px solid #ddd; 
+    padding: 10px;
+    text-align: center; 
+}
+
+.taula-incidencies th {
+    background-color: #f2f2f2; 
+    font-weight: bold;
+}
+
+
+.taula-incidencies tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.taula-incidencies a{
+   color: rgb(31, 122, 140); 
+   text-decoration: none;
+   
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 3rem; 
+}
+
+
+p {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}
