@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $estat_id = 1;
 
     // 3. Inserir usuari si no existeix (opcional)
-    $check_user_stmt = $conn->prepare("SELECT DNI FROM usuari WHERE DNI = ?");
+    $check_user_stmt = $conn->prepare("SELECT DNI FROM Usuari WHERE DNI = ?");
     $check_user_stmt->bind_param("s", $nom);
     $check_user_stmt->execute();
     $user_result = $check_user_stmt->get_result();
     if (!$user_result->fetch_assoc()) {
-        $insert_user_stmt = $conn->prepare("INSERT INTO usuari (DNI, Nom) VALUES (?, ?)");
+        $insert_user_stmt = $conn->prepare("INSERT INTO Usuari (DNI, Nom) VALUES (?, ?)");
         $insert_user_stmt->bind_param("ss", $nom, $nom);
         $insert_user_stmt->execute();
         $insert_user_stmt->close();
@@ -34,8 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_user_stmt->close();
 
     // 4. Inserir la incidència
-    $stmt = $conn->prepare("INSERT INTO Incidencies (Estat, Empleat, Departament, Descripcio, Fecha) VALUES (?, ?, ?, ?, CURDATE())");
-    $stmt->bind_param("isis", $estat_id, $nom, $departament_id, $descripcio);
+    $empleat_dni = null;
+    $stmt = $conn->prepare("INSERT INTO Incidencies (Estat, Empleat, Usuari, Departament, Descripcio, Fecha) VALUES (?, ?, ?, ?, ?, CURDATE())");
+    $stmt->bind_param("iisss", $estat_id, $empleat_dni, $nom, $departament_id, $descripcio);
+
 
     if ($stmt->execute()) {
         header("Location: validacioFormulari.html");
@@ -92,3 +94,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </fieldset>
 </body>
 </html>
+
