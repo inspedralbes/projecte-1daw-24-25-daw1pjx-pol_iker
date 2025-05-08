@@ -38,21 +38,28 @@ CREATE TABLE Departament (
     Nom_Departament VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE usuari(
+CREATE TABLE Usuari(
+    DNI VARCHAR(20) PRIMARY KEY,
+    Nom VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Empleat(
     DNI VARCHAR(20) PRIMARY KEY,
     Nom VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Incidencies (
     ID INT PRIMARY KEY AUTO_INCREMENT,
-    Estat INT NOT NULL,
-    Empleat VARCHAR(20) NOT NULL,
+    Usuari VARCHAR(20) NOT NULL,
+    Estat INT NOT NULL DEFAULT 1,
+    Empleat VARCHAR(20) NULL,
     Departament INT NOT NULL,
     Descripcio TEXT,
     Fecha DATE,
     FOREIGN KEY (Estat) REFERENCES Estat(ID),
     FOREIGN KEY (Departament) REFERENCES Departament(ID),
-    FOREIGN KEY (Empleat) REFERENCES usuari(DNI)
+    FOREIGN KEY (Usuari) REFERENCES Usuari(DNI),
+    FOREIGN KEY (Empleat) REFERENCES Empleat(DNI)
 );
 
 
@@ -70,3 +77,11 @@ INSERT INTO `Departament` (`ID`, `Nom_Departament`) VALUES
 (2,	'Administració'),
 (3,	'RRHH'),
 (4,	'Logística');
+
+
+INSERT INTO Empleat (DNI, Nom) VALUES
+('12345678A1', 'Ricardo'),
+('12345678A2', 'Iker'),
+('12345678A3', 'Joel'),
+('12345678A4', 'Carlos'),
+('12345678A5', 'Oscar');
