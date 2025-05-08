@@ -19,9 +19,10 @@ require_once 'connection.php';
 <body>
     <fieldset class = "llistat">
     <?php
-    $sql = "SELECT i.ID, u.Nom AS EmpleatNom, d.Nom_Departament, e.Estat AS EstatText, i.Descripcio, i.Fecha
+    $sql = "SELECT i.ID, u.Nom AS UsuariNom , epl.Nom AS NomEmpleat, d.Nom_Departament, e.Estat AS EstatText, i.Descripcio, i.Fecha
             FROM Incidencies i
-            JOIN usuari u ON i.Empleat = u.DNI
+            JOIN Usuari u ON i.Usuari = u.DNI
+            LEFT JOIN Empleat epl ON i.Empleat = epl.DNI
             JOIN Departament d ON i.Departament = d.ID
             JOIN Estat e ON i.Estat = e.ID";
 
@@ -30,13 +31,13 @@ require_once 'connection.php';
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
-            echo "<strong>Empleat:</strong> " . htmlspecialchars($row["EmpleatNom"]) . "<br>";
+            echo "<strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"]) . "<br>";
+            echo "<strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "<br>";
             echo "<strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"]) . "<br>";
             echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"]) . "<br>";
             echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
             echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
             echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a><hr>";
-
         }
     } else {
         echo "<p>No hi ha dades a mostrar.</p>";
