@@ -48,9 +48,9 @@ CREATE TABLE Empleat(
     Nom VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE Prioritat(
+CREATE TABLE Prioritat (
     ID INT PRIMARY KEY,
-    Nivel_de_Prioritat VARCHAR(100) NOT NULL
+    Nivel_de_Prioritat VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Incidencies (
@@ -60,11 +60,13 @@ CREATE TABLE Incidencies (
     Empleat VARCHAR(20) NULL,
     Departament INT NOT NULL,
     Descripcio TEXT,
+    Prioritat INT NULL,
     Fecha DATE,
     FOREIGN KEY (Estat) REFERENCES Estat(ID),
     FOREIGN KEY (Departament) REFERENCES Departament(ID),
     FOREIGN KEY (Usuari) REFERENCES Usuari(DNI),
-    FOREIGN KEY (Empleat) REFERENCES Empleat(DNI)
+    FOREIGN KEY (Empleat) REFERENCES Empleat(DNI),
+    FOREIGN KEY (Prioritat) REFERENCES Prioritat(ID)
 );
 
 
