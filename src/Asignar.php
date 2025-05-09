@@ -14,22 +14,53 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Incidències No Assignades</title>
+    <link rel="stylesheet" href="proyecte.css">
+     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
 <body>
+<header>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
+            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
+        </div> 
+        <h1>FORMULARI DE INICIDÈNCIES </h1>
+    </header>
 
-<h1>Incidències No Assignades</h1>
 
-<?php
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["ID"] . " - Usuari: " . $row ["Usuari"] .  " - Empleat: " . $row ["Empleat"] . " - Departament: " . $row ["Departament"] . " - Descripció: " . $row["Descripcio"] . " - Estat: " . $row ["Estat"] . " - Fecha: " . $row ["Fecha"] .  "<br>";
-    }
-} else {
-    echo "No hi ha incidències sense tècnic assignat.";
-}
 
-$conn->close();
-?>
+<fieldset>
+
+<?php if ($result->num_rows > 0): ?>
+    <table >
+        <tr>
+            <th>ID</th>
+            <th>Usuari</th>
+            <th>Empleat</th>
+            <th>Departament</th>
+            <th>Descripció</th>
+            <th>Estat</th>
+            <th>Data</th>
+        </tr>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td><?= htmlspecialchars($row["ID"]) ?></td>
+                <td><?= htmlspecialchars($row["Usuari"] ?? '') ?></td>
+                <td><?= htmlspecialchars($row["Empleat"] ?? '') ?></td>
+                <td><?= htmlspecialchars($row["Departament"] ?? '') ?></td>
+                <td><?= htmlspecialchars($row["Descripcio"] ?? '') ?></td>
+                <td><?= htmlspecialchars($row["Estat"] ?? '') ?></td>
+                <td><?= htmlspecialchars($row["Fecha"] ?? '') ?></td>
+                <td><a style="color: blue;" href="assignar_incidencia.php?id=<?= $row["ID"] ?>">Assignar</a></td>
+                </tr>
+
+        <?php endwhile; ?>
+    </table>
+<?php else: ?>
+    <p>No hi ha incidències sense tècnic assignat.</p>
+<?php endif; ?>
+
+<?php $conn->close(); ?>
+</fieldset>
 
 </body>
 </html>
