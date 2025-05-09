@@ -65,12 +65,26 @@ button {
     font-family: monospace;
     padding: 10px 20px;
     border: none;
+    
     margin-top: 20px;
 }
 
-a {
+a{
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: white;
+    outline: none;
+    border: none;
+}
+
+ div > a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    border: none;
+}
+
+.col-md-4:hover{
+    transform: translateY(-10px);   
 }
 
 .validacio{
