@@ -10,7 +10,8 @@ Esquema de pantallas de la aplicacio
 
 Disseny del model E-R (Entitat-Relació)
 
-![Projecte Disseny BDD](https://github.com/user-attachments/assets/95b9009f-0d85-4a4f-9efc-cb82211c314b)
+![Projecte Disseny BDD](![proyecte drawio](https://github.com/user-attachments/assets/5a88f9bd-a46a-450b-9567-a327bdb1f19b)
+)
 
 
 
