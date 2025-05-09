@@ -48,6 +48,11 @@ CREATE TABLE Empleat(
     Nom VARCHAR(20) NOT NULL
 );
 
+CREATE TABLE Prioritat(
+    ID INT PRIMARY KEY,
+    Nivel_de_Prioritat VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE Incidencies (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Usuari VARCHAR(20) NOT NULL,
@@ -63,14 +68,15 @@ CREATE TABLE Incidencies (
 );
 
 
-
-
-
-
 INSERT INTO `Estat` (`ID`, `Estat`) VALUES
 (1,	'No Fet'),
 (2,	'En Proces'),
 (3,	'Fet');
+
+INSERT INTO `Prioritat` (`ID`, `Nivel_de_Prioritat`) VALUES
+(1,	'Baix'),
+(2,	'Mitja'),
+(3,	'Alta');
 
 INSERT INTO `Departament` (`ID`, `Nom_Departament`) VALUES
 (1,	'Informàtica'),
