@@ -37,7 +37,9 @@ require_once 'connection.php';
             echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"]) . "<br>";
             echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
             echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
-            echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a><hr>";
+            echo "<a href='asignar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Asignar</a>";
+            echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
+            echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px;  background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Modificar</a><hr>";
         }
     } else {
         echo "<p>No hi ha dades a mostrar.</p>";
