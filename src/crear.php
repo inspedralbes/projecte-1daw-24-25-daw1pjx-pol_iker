@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $departament_text = trim($_POST['departament']);
     $descripcio = $_POST['descripcio'];
 
-    // Obtenir l’ID del departament
+    
     $dept_stmt = $conn->prepare("SELECT ID FROM Departament WHERE Nom_Departament = ?");
     $dept_stmt->bind_param("s", $departament_text);
     $dept_stmt->execute();
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $estat_id = 1;
 
-    // Inserir usuari si no existeix
+   
     $check_user_stmt = $conn->prepare("SELECT DNI FROM Usuari WHERE DNI = ?");
     $check_user_stmt->bind_param("s", $nom);
     $check_user_stmt->execute();
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $check_user_stmt->close();
 
-    // Inserir la incidència
+  
     $empleat_dni = null;
     $stmt = $conn->prepare("INSERT INTO Incidencies (Estat, Empleat, Usuari, Departament, Descripcio, Fecha) VALUES (?, ?, ?, ?, ?, CURDATE())");
     $stmt->bind_param("iisss", $estat_id, $empleat_dni, $nom, $departament_id, $descripcio);
@@ -61,13 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <header>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary"><a href="index.php">PÀGINA INICIAL</a></button>
-            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA D'INCIDÈNCIES</a></button>
-            <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTA DE INICIDÈNCIES NO ASSIGNADES</a></button>
+            <button type="button" class="btn btn-primary"><a href="usuari.php">PÀGINA USUARI</a></button>
+            <button type="button" class="btn btn-primary"><a href="llista_usuari.php">LLISTA D'INCIDÈNCIES</a></button>
         </div> 
         <h1>FORMULARI D'INCIDÈNCIES</h1>
     </header>
-
     <fieldset>
         <form method="POST" id="form" action="crear.php">
             <label for="nom">Nom:</label><br>

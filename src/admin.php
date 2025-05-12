@@ -13,40 +13,40 @@
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
 <body>
-    <header><h1>Gestor d'incidencies Institut Pedralbes</h1></header>
+    <header><h1>ADMIN</h1></header>
     
 
     <div class="container mt-5 d-flex justify-content-center">
         <div class="row g-4" style="max-width: 1000px; margin-top: 60px;"> 
 
           <div class="col-md-4" id="tarjeta">
-            <a href="usuari.php">
+            <a href="index.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="formulario.png" width="265px" style="margin-left: 35px;"  class="mb-3" alt="Formulario">
-                <h5 class="card-title">USUARI</h5>
+                <img src="" width="265px" style="margin-left: 35px;"  class="mb-3" alt="Formulario">
+                <h5 class="card-title">LOGIN</h5>
                 <p class="card-text"></p>
               </div>
             </div>
             </a>
           </div>
           <div class="col-md-4" id="tarjeta">
-              <a href="tecnic.php">
+              <a href="llista.php">
             <div class="card text-center">
               <div class="card-body">
                 <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
-                <h5 class="card-title">TECNIC</h5>
+                <h5 class="card-title">LLISTAT</h5>
                 <p class="card-text"></p>
               </div>
             </div>
             </a>
           </div>
           <div class="col-md-4" id="tarjeta">
-              <a href="admin.php">
+              <a href="asignar.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
-                <h5 class="card-title">ADMIN</h5>
+                <img src="modificar.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
+                <h5 class="card-title">ASIGNAR</h5>
                 <p class="card-text"></p>
               </div>
             </div>
