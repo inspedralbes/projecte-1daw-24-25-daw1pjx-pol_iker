@@ -8,13 +8,13 @@ services:
   web:
     #La imatge php:apache no conté els drivers de mysql, hem de fer una imatge a mida
     #image: php:apache
-    build:
-      context: ./images
-      dockerfile: Dockerfile_php
+    image: ebota/daw:apache_php_mysql_mongodb
     ports:
       - "8080:80"
     volumes:
       - ./src:/var/www/html
+    command: /bin/bash -c "composer install --no-interaction --no-plugins --no-scripts && echo WEBSERVER_________UP_________AND_______RUNNIIIIIIING && apache2-foreground"
+
     environment:
       VAR1: "sóc una pera i estic al docker-compose"
       VAR2: ${VAR2}
@@ -53,3 +53,39 @@ services:
       - "8081:8080"
     depends_on:
       - db
+
+  # BBDD no sql,
+  mongo:
+    image: mongo:latest
+    volumes:
+      #Named volume, no cal posar res al .gitignore
+      #perque no es crea una carpeta al host sinó que es crea un volum a docker
+      # i es pot veure amb docker volume ls
+      # i es pot eliminar amb docker volume rm nom_del_volum      
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8082:8081"
+    environment:
+      #Per entrar a la web de mongo-express, les credencials són
+      #admin
+      #pass
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    depends_on:
+      - mongo
+
+# Volums
+#Les dades del mongodb les guardem en un named volume
+#perque així no es perden quan es recrea el contenidor
+#Però el podem esborrar des del terminal amb:
+#docker volume ls #per veure els volums creats
+#docker volume rm nom_del_volum #per eliminar un volum
+volumes:
+  mongodb_data:
