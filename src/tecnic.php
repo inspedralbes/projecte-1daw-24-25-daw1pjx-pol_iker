@@ -23,7 +23,7 @@
             <a href="index.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="" width="265px" style="margin-left: 35px;"  class="mb-3" alt="Formulario">
+              <img src="exit2.png" width="232px"   class="mb-3" alt="Formulario">
                 <h5 class="card-title">LOGIN</h5>
                 <p class="card-text"></p>
               </div>
