@@ -21,6 +21,7 @@ $result = $conn->query($sql);
 <header>
         <div class="btn-group">
             <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
+            <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI DE INICIDÈNCIES</a></button>
             <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
         </div> 
         <h1>FORMULARI DE INICIDÈNCIES </h1>

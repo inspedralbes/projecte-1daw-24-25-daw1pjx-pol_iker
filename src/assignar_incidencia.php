@@ -5,18 +5,24 @@ require_once 'connection.php';
 $id = $_GET['id'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $empleat = $_POST['empleat'];
-    $prioritat = $_POST['Prioritat'];
+    $empleat = $_POST['empleat'] ?? '';
+    $prioritat = $_POST['Prioritat'] ?? '';
 
+    if (empty($empleat) || empty($prioritat)) {
+        echo "<p class='error'>Cal seleccionar un tècnic i una prioritat.</p>";
+    } else {
+        $stmt = $conn->prepare("UPDATE Incidencies SET Empleat = ?, Prioritat = ? WHERE ID = ?");
+        $stmt->bind_param("ssi", $empleat, $prioritat, $id);
 
-    // Assignar el tècnici PRioritat a la incidència
-    $conn->query("UPDATE Incidencies SET Empleat = '$empleat' WHERE ID = $id");
-    $conn->query("UPDATE Incidencies SET Prioritat = '$prioritat' WHERE ID = $id");
-
-
-    echo "<p>Incidència assignada correctament!</p>";
-    echo '<a href="incidencies_no_assignades.php">Tornar al llistat</a>';
-    exit;
+        if ($stmt->execute()) {
+            $stmt->close();
+            header("Location: confirmat.html");
+            exit(); // Assegurem que no es continua després de la redirecció
+        } else {
+            echo "<p class='error'>Error en actualitzar: " . htmlspecialchars($stmt->error) . "</p>";
+            $stmt->close();
+        }
+    }
 }
 
 // Llistar empleats  y Prioritats 
@@ -25,12 +31,18 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 
 ?>
 
+<script>
+
+
+</script>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
     <title>Assignar Incidència</title>
     <link rel="stylesheet" href="proyecte.css">
+    <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 
 </head>
 <body>
@@ -38,6 +50,7 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
         <div class="btn-group">
             <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
             <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
+            <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTA DE INICIDÈNCIES NO ASSIGNADES</a></button>
         </div> 
         <h1>FORMULARI DE INICIDÈNCIES </h1>
     </header>
@@ -46,7 +59,7 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 
 <fieldset>
 
-<form method="POST">
+<form method="POST" id="form">
 <h1>Assignar Tècnic/Prioritat a la Incidència <?= htmlspecialchars($id) ?></h1>
 
     <label for="empleat">Selecciona un tècnic:</label>
@@ -55,7 +68,7 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
         <?php while ($emp = $empleats->fetch_assoc()): ?>
             <option value="<?= $emp['DNI'] ?>"><?= $emp['Nom'] ?></option>
         <?php endwhile; ?>
-    </select>
+    </select> <br>
     <label for="Prioritat">Selecciona una Prioritat:</label>
     <select name="Prioritat" id="Prioritat">
         <option value="">Selecciona una Prioritat</option>
@@ -70,5 +83,25 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 </form>
 </fieldset>
 
+<script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            const empleat = document.getElementById('empleat').value.trim();
+            const Prioritat = document.getElementById('Prioritat').value.trim();
+            let errors = [];
+
+            if (empleat === '') {
+                errors.push("Has de selecionar un tècnic.");
+            }
+
+            if (Prioritat === '') {
+                errors.push("Has de seleccionar un nivell de prioritat");
+            }
+
+            if (errors.length > 0) {
+                alert(errors.join('\n'));
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

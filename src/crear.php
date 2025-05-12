@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $departament_text = trim($_POST['departament']);
     $descripcio = $_POST['descripcio'];
 
-    // 1. Obtenir l’ID del departament
+    // Obtenir l’ID del departament
     $dept_stmt = $conn->prepare("SELECT ID FROM Departament WHERE Nom_Departament = ?");
     $dept_stmt->bind_param("s", $departament_text);
     $dept_stmt->execute();
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $estat_id = 1;
 
-    // 3. Inserir usuari si no existeix (opcional)
+    // Inserir usuari si no existeix
     $check_user_stmt = $conn->prepare("SELECT DNI FROM Usuari WHERE DNI = ?");
     $check_user_stmt->bind_param("s", $nom);
     $check_user_stmt->execute();
@@ -33,14 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $check_user_stmt->close();
 
-    // 4. Inserir la incidència
+    // Inserir la incidència
     $empleat_dni = null;
     $stmt = $conn->prepare("INSERT INTO Incidencies (Estat, Empleat, Usuari, Departament, Descripcio, Fecha) VALUES (?, ?, ?, ?, ?, CURDATE())");
     $stmt->bind_param("iisss", $estat_id, $empleat_dni, $nom, $departament_id, $descripcio);
 
-
     if ($stmt->execute()) {
-        header("Location: validacioFormulari.html");
+        header("Location: confirmat.html");
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -55,8 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulari de Incidències</title>
     <link rel="stylesheet" href="proyecte.css">
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
@@ -64,34 +61,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <header>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
-            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
+            <button type="button" class="btn btn-primary"><a href="index.php">PÀGINA INICIAL</a></button>
+            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA D'INCIDÈNCIES</a></button>
+            <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTA DE INICIDÈNCIES NO ASSIGNADES</a></button>
         </div> 
-        <h1>FORMULARI DE INICIDÈNCIES </h1>
+        <h1>FORMULARI D'INCIDÈNCIES</h1>
     </header>
 
     <fieldset>
-        <form method="POST" action="crear.php">
+        <form method="POST" id="form" action="crear.php">
             <label for="nom">Nom:</label><br>
-            <input type="text" name="nom" id="nom" required><br>
-            
-            
-            <label for="departament">Departament:</label> <br>
-            <select name="departament" id="departament" required>
+            <input type="text" name="nom" id="nom"><br>
+
+            <label for="departament">Departament:</label><br>
+            <select name="departament" id="departament">
                 <option value="">-- Selecciona --</option>
                 <option value="Informàtica">Informàtica</option>
                 <option value="Administració">Administració</option>
                 <option value="RRHH">RRHH</option>
                 <option value="Logística">Logística</option>
-            </select> <br><br>
+            </select><br><br>
 
-            <label for="descripcio">Descripció de la incidència:</label> <br>
-            <textarea rows="5" cols="50" style="resize: none;" name="descripcio" id="descripcio" required></textarea>
-            <br><br>
+            <label for="descripcio">Descripció de la incidència:</label><br>
+            <textarea rows="5" cols="50" style="resize: none;" name="descripcio" id="descripcio"></textarea><br><br>
 
             <button type="submit">ENVIAR</button>
         </form>
     </fieldset>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            const nom = document.getElementById('nom').value.trim();
+            const departament = document.getElementById('departament').value.trim();
+            const descripcio = document.getElementById('descripcio').value.trim();
+            let errors = [];
+
+            if (nom === '') {
+                errors.push("Has de posar un nom.");
+            }
+
+            if (departament === '') {
+                errors.push("Has de seleccionar un departament.");
+            }
+
+            if (descripcio === '') {
+                errors.push("Has d'escriure una descripció.");
+            }
+            else if (descripcio.length < 20) {
+            errors.push("La descripcio ha de tenir com a mínim 20 caràcters.");
+            }
+            
+
+            if (errors.length > 0) {
+                alert(errors.join('\n'));
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
-

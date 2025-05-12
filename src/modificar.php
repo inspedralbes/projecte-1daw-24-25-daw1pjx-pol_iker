@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         // Si la actualización fue exitosa, redirigimos al usuario a la página "esborrada.html"
         $stmt->close();
-        header("Location: modificat.html");
+        header("Location: confirmat.html");
         exit();  // Aseguramos que el código siguiente no se ejecute después de la redirección
     } else {
         echo "<p class='error'>Error en actualitzar: " . htmlspecialchars($stmt->error) . "</p>";
@@ -64,18 +64,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Incidència</title>
     <link rel="stylesheet" href="proyecte.css">
+    <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
 <body>
     <header>
         <div class="btn-group">
             <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
+            <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI DE INCIDÈNCIES</a></button>
             <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
-            <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI INCIDÈNCIES</a></button>
         </div> 
         <h1>MODIFICAR INCIDÈNCIA</h1>
     </header>
 
-    <form method="POST">
+    <form method="POST" id="form">
         <fieldset>
             <h1>Editar Incidència ID <?php echo htmlspecialchars($row['ID']); ?></h1>
 
@@ -95,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="Descripcio">Descripció:</label><br>
             <textarea name="Descripcio" id="Descripcio" rows="4" cols="50"><?php echo htmlspecialchars($row['Descripcio']); ?></textarea><br><br>
 
-                        <!-- Selección de Estat -->
             <label for="Estat">Estat Incidència:</label><br>
             <select name="Estat" id="Estat" required>
                 <option value="">-- Selecciona un estat --</option>
@@ -124,5 +124,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            const Departament = document.getElementById('Departament').value.trim();
+            const Descripcio = document.getElementById('Descripcio').value.trim();
+            const Estat = document.getElementById('Estat').value.trim();
+            let errors = [];
+
+            if (Descripcio === '') {
+                errors.push("Has d'escriure una descripció.");
+            }
+            else if (Descripcio.length < 20) {
+            errors.push("La descripcio ha de tenir com a mínim 20 caràcters.");
+            }
+
+            if (Estat === '') {
+                errors.push("Has de posar-li un estat a la incidencia");
+            }
+
+            if (errors.length > 0) {
+                alert(errors.join('\n'));
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
