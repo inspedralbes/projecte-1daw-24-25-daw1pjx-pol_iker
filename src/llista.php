@@ -21,6 +21,14 @@ require_once 'connection.php';
 
 <!-- Filtres amb JavaScript -->
 <fieldset class="filtre">
+    <label for="filtreEmpleat">Filtrar per Empleat:</label>
+    <select id="filtreEmpleat">
+        <option value="">Tots</option>
+        <option value="Ricardo">Ricardo</option>
+        <option value="Joel">Joel</option>
+        <option value="Iker">Iker</option>
+    </select>    
+
     <label for="filtreEstat">Filtrar per estat:</label>
     <select id="filtreEstat">
         <option value="">Tots</option>
@@ -37,13 +45,7 @@ require_once 'connection.php';
         <option value="Baixa">Baixa</option>
     </select>
 
-     <label for="filtreEmpleat">Filtrar per Empleat:</label>
-    <select id="filtreEmpleat">
-        <option value="">Tots</option>
-        <option value="Alta">Ricardo</option>
-        <option value="Mitja">Mitja</option>
-        <option value="Baixa">Baixa</option>
-    </select>
+    
 </fieldset>
 
 <fieldset class="llistat">
@@ -72,7 +74,7 @@ if ($result->num_rows > 0) {
             case 'Mitja': $color = 'orange'; break;
             case 'Baix': $color = 'rgb(31, 122, 140); '; break ; 
 }
-        echo "<div class='incidencia' data-estat='" . htmlspecialchars($row["EstatText"]) . "' data-prioritat='" . htmlspecialchars($row["PrioritatText"]) . "'>";
+        echo "<div class='incidencia' data-empleat='" . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "' data-estat='" . htmlspecialchars($row["EstatText"]) . "' data-prioritat='" . htmlspecialchars($row["PrioritatText"]) . "'>";
         echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
         echo "<strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"]) . "<br>";
         echo "<strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "<br>";
@@ -98,26 +100,30 @@ $conn->close();
 <!-- JavaScript del filtre -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const filtreEmpleat = document.getElementById('filtreEmpleat');
     const filtreEstat = document.getElementById('filtreEstat');
     const filtrePrioritat = document.getElementById('filtrePrioritat');
     const incidencies = document.querySelectorAll('.incidencia');
 
     function filtrar() {
+        const empleatSeleccionat = filtreEmpleat.value;
         const estatSeleccionat = filtreEstat.value;
         const prioritatSeleccionada = filtrePrioritat.value;
 
         incidencies.forEach(incidencia => {
+            const empleat = incidencia.getAttribute('data-empleat');
             const estat = incidencia.getAttribute('data-estat');
             const prioritat = incidencia.getAttribute('data-prioritat');
 
             const mostrar =
+                (empleatSeleccionat === '' || empleat === empleatSeleccionat) &&            
                 (estatSeleccionat === '' || estat === estatSeleccionat) &&
                 (prioritatSeleccionada === '' || prioritat === prioritatSeleccionada);
 
             incidencia.style.display = mostrar ? 'block' : 'none';
         });
     }
-
+    filtreEmpleat.addEventListener('change', filtrar);
     filtreEstat.addEventListener('change', filtrar);
     filtrePrioritat.addEventListener('change', filtrar);
 });
