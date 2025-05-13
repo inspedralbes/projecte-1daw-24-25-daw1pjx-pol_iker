@@ -7,7 +7,6 @@ Diagrama casos d'us
 Esquema de pantallas de la aplicacio
 
 Pantalla Usuari
-
 ![Captura de pantalla a 2025-05-13 08-36-53](https://github.com/user-attachments/assets/99405531-6581-43f7-9052-60ff79c5ae76)
 
 Pantalla Tecnic
@@ -15,8 +14,8 @@ Pantalla Tecnic
 
 
 Disseny del model E-R (Entitat-Relació)
+![Projecte Disseny BDD](https://github.com/user-attachments/assets/d7ec9feb-ea3e-4f1f-a920-e080c2fc0dc0)
 
-![proyecte drawio](https://github.com/user-attachments/assets/5a88f9bd-a46a-450b-9567-a327bdb1f19b)
 
 Diagrama software
 
