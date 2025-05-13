@@ -4,14 +4,13 @@ require_once 'connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Procesar la actualización
     $id = $_POST['ID'];
-    $departament = $_POST['Departament'];
     $descripcio = $_POST['Descripcio'];
     $estat = $_POST['Estat'];
 
     // Consulta para actualizar la incidencia
-    $sql = "UPDATE Incidencies SET Departament = ?, Descripcio = ?, Estat = ? WHERE ID = ?";
+    $sql = "UPDATE Incidencies SET Descripcio = ?, Estat = ? WHERE ID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isii", $departament, $descripcio, $estat, $id); // El tipo es "isii" porque Departament es un número (ID), Descripcio es texto, Estat es un número e ID es un número
+    $stmt->bind_param("sii", $descripcio, $estat, $id); // El tipo es "isii" porque Departament es un número (ID), Descripcio es texto, Estat es un número e ID es un número
 
     if ($stmt->execute()) {
         // Si la actualización fue exitosa, redirigimos al usuario a la página "esborrada.html"
@@ -38,15 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
-            // Obtener los departamentos para el select
-            $departaments = [];
-            $dept_sql = "SELECT ID, Nom_Departament FROM Departament";
-            $dept_result = $conn->query($dept_sql);
-            if ($dept_result && $dept_result->num_rows > 0) {
-                while ($dept_row = $dept_result->fetch_assoc()) {
-                    $departaments[] = $dept_row;
-                }
-            }
              // Obtener los estados para el select
             $estats = [];
             $estat_sql = "SELECT ID, Estat FROM Estat"; // Aquí asumo que la tabla Estat tiene los campos ID y Nom_Estat
@@ -78,22 +68,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form method="POST" id="form">
         <fieldset>
-            <h1>Editar Incidència ID <?php echo htmlspecialchars($row['ID']); ?></h1>
+            <h1>Accions ID <?php echo htmlspecialchars($row['ID']); ?></h1>
 
             <input type="hidden" name="ID" value="<?php echo htmlspecialchars($row['ID']); ?>">
 
-            <label for="Departament">Departament:</label><br>
-            <select name="Departament" id="Departament" required>
-                <option value="">-- Selecciona --</option>
-                <?php
-                foreach ($departaments as $dept) {
-                    $selected = ($dept['ID'] == $row['Departament']) ? "selected" : "";
-                    echo "<option value='" . htmlspecialchars($dept['ID']) . "' $selected>" . htmlspecialchars($dept['Nom_Departament']) . "</option>";
-                }
-                ?>
-            </select><br><br>
+            
 
-            <label for="Descripcio">Descripció:</label><br>
+            <label for="Descripcio">Descripció Accions:</label><br>
             <textarea name="Descripcio" id="Descripcio" rows="4" cols="50"><?php echo htmlspecialchars($row['Descripcio']); ?></textarea><br><br>
 
             <label for="Estat">Estat Incidència:</label><br>
