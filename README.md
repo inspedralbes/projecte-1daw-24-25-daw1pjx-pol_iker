@@ -6,7 +6,10 @@ Diagrama casos d'us
 
 Esquema de pantallas de la aplicacio
 
-![Captura de pantalla a 2025-04-22 13-10-33](https://github.com/user-attachments/assets/15453532-6c7b-4681-848c-7d6b1e5d4fb3)
+Pantalla usuari
+
+![Captura de pantalla a 2025-05-13 08-36-53](https://github.com/user-attachments/assets/99405531-6581-43f7-9052-60ff79c5ae76)
+
 
 Disseny del model E-R (Entitat-Relació)
 
