@@ -1,9 +1,9 @@
 <?php
 
-$servername = "db"; 
-$username = "usuari"; 
-$password = "paraula_de_pas"; 
-$dbname = "incidencia"; 
+$servername = "daw.inspedralbes.cat"; 
+$username = "a24ikematgar_incidencia"; 
+$password = ":8VBky{Uq9D^W-xk"; 
+$dbname = "a24ikematgar_incidencia"; 
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
