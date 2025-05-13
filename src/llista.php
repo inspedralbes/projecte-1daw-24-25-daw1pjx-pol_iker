@@ -12,8 +12,8 @@ require_once 'connection.php';
 <body>
 <header>
     <div class="btn-group">
-        <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
-        <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI DE INICIDÈNCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="tecnic.php">TECNIC</a></button>
+        <button type="button" class="btn btn-primary"><a href="crear_tecnic.php">FORMULARI DE INICIDÈNCIES</a></button>
         <button type="button" class="btn btn-primary"><a href="asignar.php">FORMULARI DE INICIDÈNCIES NO ASIGNADES</a></button>
     </div> 
     <h1>LLISTAT DE INCIDÈNCIES</h1>

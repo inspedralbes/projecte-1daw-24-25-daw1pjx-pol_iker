@@ -31,7 +31,7 @@
             </a>
           </div>
           <div class="col-md-4" id="tarjeta">
-              <a href="llista.php">
+              <a href="llista_admin.php">
             <div class="card text-center">
               <div class="card-body">
                 <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">

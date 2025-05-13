@@ -23,7 +23,7 @@
             <a href="usuari.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="formulario.png" width="265px" style="margin-left: 35px;"  class="mb-3" alt="Formulario">
+                <img src="usuari.png" width="265px"   class="mb-3" alt="Formulario">
                 <h5 class="card-title">USUARI</h5>
                 <p class="card-text"></p>
               </div>
@@ -34,7 +34,7 @@
               <a href="tecnic.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
+                <img src="tecnic2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
                 <h5 class="card-title">TECNIC</h5>
                 <p class="card-text"></p>
               </div>
@@ -45,7 +45,7 @@
               <a href="admin.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
+                <img src="admin.jpg" width="265px" class="mx-auto d-block mb-3" alt="Llista">
                 <h5 class="card-title">ADMIN</h5>
                 <p class="card-text"></p>
               </div>

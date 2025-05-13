@@ -12,9 +12,9 @@ require_once 'connection.php';
 <body>
 <header>
     <div class="btn-group">
-        <button type="button" class="btn btn-primary"><a href="usuari.php">PAGINA USUARI</a></button>
-        <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI DE INICIDÈNCIES</a></button>
-
+        <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
+        <button type="button" class="btn btn-primary"><a href="crear_admin.php">FORMULARI DE INICIDÈNCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="asignar.php">FORMULARI DE INICIDÈNCIES NO ASIGNADES</a></button>
     </div> 
     <h1>LLISTAT DE INCIDÈNCIES</h1>
 </header>
@@ -77,7 +77,9 @@ if ($result && $result->num_rows > 0) {
         echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "<br>";
         echo "<strong>Prioritat:</strong> " . htmlspecialchars($row["PrioritatText"] ?? 'Sense prioritat') . "<br>";
         echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
-        echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<hr>";
+        echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
+        echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
+        echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Modificar</a><hr>";
     }
 } else {
     echo "<p>No hi ha cap incidència amb aquests filtres.</p>";
