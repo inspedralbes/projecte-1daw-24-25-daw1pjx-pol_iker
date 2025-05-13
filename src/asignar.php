@@ -32,7 +32,7 @@ $result = $conn->query($sql);
 <fieldset>
 
 <?php if ($result->num_rows > 0): ?>
-    <table >
+    <table class="llistat_no_asignades">
         <tr>
             <th>ID</th>
             <th>Usuari</th>
