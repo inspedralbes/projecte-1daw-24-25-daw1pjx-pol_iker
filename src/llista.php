@@ -36,6 +36,14 @@ require_once 'connection.php';
         <option value="Mitja">Mitja</option>
         <option value="Baixa">Baixa</option>
     </select>
+
+     <label for="filtreEmpleat">Filtrar per Empleat:</label>
+    <select id="filtreEmpleat">
+        <option value="">Tots</option>
+        <option value="Alta">Ricardo</option>
+        <option value="Mitja">Mitja</option>
+        <option value="Baixa">Baixa</option>
+    </select>
 </fieldset>
 
 <fieldset class="llistat">
@@ -48,19 +56,29 @@ $sql = "SELECT i.ID, u.Nom AS UsuariNom , epl.Nom AS NomEmpleat, d.Nom_Departame
         LEFT JOIN Empleat epl ON i.Empleat = epl.DNI
         JOIN Departament d ON i.Departament = d.ID
         JOIN Estat e ON i.Estat = e.ID
-        JOIN Prioritat p ON i.Prioritat = p.ID";
+        JOIN Prioritat p ON i.Prioritat = p.ID
+        ORDER BY p.ID DESC";
+
 
 $result = $conn->query($sql);
 
+
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $color = '';
+        switch ($row["PrioritatText"]) {
+            case 'Alta': $color = 'red'; break;
+            case 'Mitja': $color = 'orange'; break;
+            case 'Baix': $color = 'rgb(31, 122, 140); '; break ; 
+}
         echo "<div class='incidencia' data-estat='" . htmlspecialchars($row["EstatText"]) . "' data-prioritat='" . htmlspecialchars($row["PrioritatText"]) . "'>";
         echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
         echo "<strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"]) . "<br>";
         echo "<strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "<br>";
         echo "<strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"]) . "<br>";
         echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"]) . "<br>";
-        echo "<strong>Prioritat:</strong> " . htmlspecialchars($row["PrioritatText"]) . "<br>";
+        echo "<strong>Prioritat:</strong> <span style='color: $color; font-weight:bold;'>" . htmlspecialchars($row["PrioritatText"]) . "</span><br>";
         echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
         echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
@@ -74,6 +92,8 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 </fieldset>
+
+
 
 <!-- JavaScript del filtre -->
 <script>
