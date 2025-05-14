@@ -2,125 +2,111 @@
 require_once 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Procesar la actualización
     $id = $_POST['ID'];
-    $descripcio = $_POST['Descripcio'];
-    $estat = $_POST['Estat'];
 
-    // Consulta para actualizar la incidencia
-    $sql = "UPDATE Incidencies SET Descripcio = ?, Estat = ? WHERE ID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sii", $descripcio, $estat, $id); // El tipo es "isii" porque Departament es un número (ID), Descripcio es texto, Estat es un número e ID es un número
+    // Comprobamos que los campos necesarios estén completos
+    if (!empty($_POST['NovaDescripcio']) && !empty($_POST['Temps']) && !empty($_POST['NouEstat'])) {
+        $nova_descripcio = $_POST['NovaDescripcio'];
+        $temps = $_POST['Temps'];
+        $nou_estat = $_POST['NouEstat'];
 
-    if ($stmt->execute()) {
-        // Si la actualización fue exitosa, redirigimos al usuario a la página "esborrada.html"
-        $stmt->close();
-        header("Location: confirmat.html");
-        exit();  // Aseguramos que el código siguiente no se ejecute después de la redirección
-    } else {
-        echo "<p class='error'>Error en actualitzar: " . htmlspecialchars($stmt->error) . "</p>";
+        // Obtenemos el siguiente linia_incidencia disponible para este id_incidencia
+        $sql_max = "SELECT COALESCE(MAX(linia_incidencia), 0) + 1 AS next_linia 
+                    FROM actuacio_de_incidencia 
+                    WHERE id_incidencia = ?";
+        $stmt_max = $conn->prepare($sql_max);
+        $stmt_max->bind_param("i", $id);
+        $stmt_max->execute();
+        $result_max = $stmt_max->get_result();
+        $row_max = $result_max->fetch_assoc();
+        $linia_incidencia = $row_max['next_linia'];
+        $stmt_max->close();
+
+        // Insertamos la nueva actuación en la tabla actuacio_de_incidencia
+        $sql_insert = "INSERT INTO actuacio_de_incidencia (id_incidencia, linia_incidencia, descripcio, temp_requeit, estat_incidencia)
+                       VALUES (?, ?, ?, ?, ?)";
+        $stmt_insert = $conn->prepare($sql_insert);
+        $stmt_insert->bind_param("iissi", $id, $linia_incidencia, $nova_descripcio, $temps, $nou_estat);
+        $stmt_insert->execute();
+        $stmt_insert->close();
     }
 
-    $stmt->close();
+    // Redirigimos a la página de confirmación después de la inserción
+    header("Location: confirmat.html");
+    exit();
 } elseif (isset($_GET['ID'])) {
-    // Mostrar el formulario con los datos actuales
     $id = $_GET['ID'];
 
     if (is_numeric($id)) {
-        // Consulta para obtener los datos de la incidencia
-        $sql = "SELECT * FROM Incidencies WHERE ID = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-
-             // Obtener los estados para el select
-            $estats = [];
-            $estat_sql = "SELECT ID, Estat FROM Estat"; // Aquí asumo que la tabla Estat tiene los campos ID y Nom_Estat
-            $estat_result = $conn->query($estat_sql);
-            if ($estat_result && $estat_result->num_rows > 0) {
-                while ($estat_row = $estat_result->fetch_assoc()) {
-                    $estats[] = $estat_row;
-                }
+        // Cargar los estados para el select
+        $estats = [];
+        $estat_sql = "SELECT ID, Estat FROM Estat";
+        $estat_result = $conn->query($estat_sql);
+        if ($estat_result && $estat_result->num_rows > 0) {
+            while ($estat_row = $estat_result->fetch_assoc()) {
+                $estats[] = $estat_row;
             }
+        }
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Incidència</title>
+    <title>Afegir actuació tècnica</title>
     <link rel="stylesheet" href="proyecte.css">
-    <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
 <body>
     <header>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
-            <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI DE INCIDÈNCIES</a></button>
-            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
+            <button><a href="index.php">PÀGINA INICIAL</a></button>
+            <button><a href="crear.php">FORMULARI D’INCIDÈNCIES</a></button>
+            <button><a href="llista.php">LLISTA D’INCIDÈNCIES</a></button>
         </div> 
-        <h1>MODIFICAR INCIDÈNCIA</h1>
+        <h1>Afegir actuació tècnica a la incidència</h1>
     </header>
 
     <form method="POST" id="form">
         <fieldset>
-            <h1>Accions ID <?php echo htmlspecialchars($row['ID']); ?></h1>
+            <h2>Incidència ID <?php echo htmlspecialchars($id); ?></h2>
+            <input type="hidden" name="ID" value="<?php echo htmlspecialchars($id); ?>">
 
-            <input type="hidden" name="ID" value="<?php echo htmlspecialchars($row['ID']); ?>">
+            <h3>Afegir actuació tècnica</h3>
 
-            
+            <label for="NovaDescripcio">Descripció tècnica:</label><br>
+            <textarea name="NovaDescripcio" id="NovaDescripcio" rows="3" cols="50"></textarea><br><br>
 
-            <label for="Descripcio">Descripció Accions:</label><br>
-            <textarea name="Descripcio" id="Descripcio" rows="4" cols="50"><?php echo htmlspecialchars($row['Descripcio']); ?></textarea><br><br>
+            <label for="Temps">Temps requerit:</label>
+            <input type="time" name="Temps" id="Temps"><br><br>
 
-            <label for="Estat">Estat Incidència:</label><br>
-            <select name="Estat" id="Estat" required>
+            <label for="NouEstat">Estat de l'actuació:</label><br>
+            <select name="NouEstat" id="NouEstat" required>
                 <option value="">-- Selecciona un estat --</option>
                 <?php
                 foreach ($estats as $estat) {
-                    $selected = ($estat['ID'] == $row['Estat']) ? "selected" : "";
-                    echo "<option value='" . htmlspecialchars($estat['ID']) . "' $selected>" . htmlspecialchars($estat['Estat']) . "</option>";
+                    echo "<option value='" . htmlspecialchars($estat['ID']) . "'>" . htmlspecialchars($estat['Estat']) . "</option>";
                 }
                 ?>
             </select><br><br>
             <input type="submit" value="Desar canvis" style="background-color: rgb(31, 122, 140); color:white; padding:8px 12px; border:none; border-radius:5px;">
+
         </fieldset>
+
+      
     </form>
 
-<?php
-        } else {
-            echo "<p class='error'>Incidència no trobada.</p>";
-        }
-
-        $stmt->close();
-    } else {
-        echo "<p class='error'>ID no vàlid.</p>";
-    }
-} else {
-    echo "<p class='error'>No s'ha especificat cap ID.</p>";
-}
-?>
-
-<script>
+    <script>
         document.getElementById('form').addEventListener('submit', function(event) {
-            const Departament = document.getElementById('Departament').value.trim();
-            const Descripcio = document.getElementById('Descripcio').value.trim();
-            const Estat = document.getElementById('Estat').value.trim();
+            const NovaDescripcio = document.getElementById('NovaDescripcio').value.trim();
+            const Temps = document.getElementById('Temps').value.trim();
+            const NouEstat = document.getElementById('NouEstat').value.trim();
             let errors = [];
 
-            if (Descripcio === '') {
-                errors.push("Has d'escriure una descripció.");
-            }
-            else if (Descripcio.length < 20) {
-            errors.push("La descripcio ha de tenir com a mínim 20 caràcters.");
+            if (NovaDescripcio === '') {
+                errors.push("Has d'escriure una descripció tècnica.");
             }
 
-            if (Estat === '') {
-                errors.push("Has de posar-li un estat a la incidencia");
+            if (NouEstat === '') {
+                errors.push("Has de seleccionar un estat per l'actuació.");
             }
 
             if (errors.length > 0) {
@@ -131,3 +117,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </body>
 </html>
+
+<?php
+    } else {
+        echo "<p class='error'>ID no vàlid.</p>";
+    }
+} else {
+    echo "<p class='error'>No s'ha especificat cap ID.</p>";
+}
+?>

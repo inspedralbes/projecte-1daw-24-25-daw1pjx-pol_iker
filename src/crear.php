@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <header>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary"><a href="usuari.php">PÀGINA USUARI</a></button>
+            <button type="button" class="btn btn-primary"><a href="usuari.php">USUARI</a></button>
             <button type="button" class="btn btn-primary"><a href="llista_usuari.php">LLISTA D'INCIDÈNCIES</a></button>
         </div> 
         <h1>FORMULARI D'INCIDÈNCIES</h1>

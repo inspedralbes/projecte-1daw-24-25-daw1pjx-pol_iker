@@ -13,33 +13,38 @@ require_once 'connection.php';
 <header>
     <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
-        <button type="button" class="btn btn-primary"><a href="crear_admin.php">FORMULARI DE INICIDÈNCIES</a></button>
-        <button type="button" class="btn btn-primary"><a href="asignar.php">FORMULARI DE INICIDÈNCIES NO ASIGNADES</a></button>
+        <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTAT DE INICIDÈNCIES NO ASIGNADES</a></button>
     </div> 
     <h1>LLISTAT DE INCIDÈNCIES</h1>
 </header>
 
-<!-- Filtres -->
 <fieldset class="filtre">
-    <form method="GET" action="">
-        <label for="filtreEstat">Filtrar per estat:</label>
-        <select id="filtreEstat" name="estat">
-            <option value="">Tots</option>
-            <option value="No Fet" <?= ($_GET['estat'] ?? '') == 'No Fet' ? 'selected' : '' ?>>No Fet</option>
-            <option value="En Proces" <?= ($_GET['estat'] ?? '') == 'En Proces' ? 'selected' : '' ?>>En Proces</option>
-            <option value="Fet" <?= ($_GET['estat'] ?? '') == 'Fet' ? 'selected' : '' ?>>Fet</option>
-        </select>
+    <label for="filtreEmpleat">Filtrar per Empleat:</label>
+    <select id="filtreEmpleat">
+        <option value="">Tots</option>
+        <option value="Ricardo">Ricardo</option>
+        <option value="Joel">Joel</option>
+        <option value="Iker">Iker</option>
+    </select>    
 
-        <label for="filtrePrioritat">Filtrar per prioritat:</label>
-        <select id="filtrePrioritat" name="prioritat">
-            <option value="">Tots</option>
-            <option value="Alta" <?= ($_GET['prioritat'] ?? '') == 'Alta' ? 'selected' : '' ?>>Alta</option>
-            <option value="Mitja" <?= ($_GET['prioritat'] ?? '') == 'Mitja' ? 'selected' : '' ?>>Mitja</option>
-            <option value="Baixa" <?= ($_GET['prioritat'] ?? '') == 'Baixa' ? 'selected' : '' ?>>Baixa</option>
-        </select>
+    <label for="filtreEstat">Filtrar per estat:</label>
+    <select id="filtreEstat">
+        <option value="">Tots</option>
+        <option value="No Fet">No Fet</option>
+        <option value="En Proces">En Proces</option>
+        <option value="Fet">Fet</option>
+    </select>
 
-        <button type="submit">Aplicar filtre</button>
-    </form>
+    <label for="filtrePrioritat">Filtrar per prioritat:</label>
+    <select id="filtrePrioritat">
+        <option value="">Tots</option>
+        <option value="Alta">No assignat</option>
+        <option value="Alta">Alta</option>
+        <option value="Mitja">Mitja</option>
+        <option value="Baixa">Baixa</option>
+    </select>
+
+    
 </fieldset>
 
 <fieldset class="llistat">
@@ -66,20 +71,33 @@ if ($prioritat !== '') {
     $sql .= " AND p.Nivel_de_Prioritat = '" . $conn->real_escape_string($prioritat) . "'";
 }
 
+$sql .= " ORDER BY FIELD(p.Nivel_de_Prioritat, 'Alta', 'Mitja', 'Baix' , 'No assignat')";
+$result = $conn->query($sql);
+
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $color = '';
+        switch ($row["PrioritatText"]) {
+            case 'Alta': $color = 'red'; break;
+            case 'Mitja': $color = 'orange'; break;
+            case 'Baix': $color = 'rgb(31, 122, 140)'; break;
+            default: $color = 'black'; break;
+}
+        echo "<div class='incidencia' data-empleat='" . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "' data-estat='" . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "' data-prioritat='" . htmlspecialchars($row["PrioritatText"] ?? 'No assignat') . "'>";
         echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
         echo "<strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"] ?? 'No trobat') . "<br>";
         echo "<strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "<br>";
         echo "<strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"] ?? 'No assignat') . "<br>";
         echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "<br>";
-        echo "<strong>Prioritat:</strong> " . htmlspecialchars($row["PrioritatText"] ?? 'Sense prioritat') . "<br>";
-        echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
-        echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
+        echo "<strong>Prioritat:</strong> <span style='color: $color; font-weight:bold;'>" . htmlspecialchars($row["PrioritatText"] ?? 'No assignat') . "</span><br>";
+        echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"] ?? '') . "<br>";
+        echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"] ?? '') . "<br>";        
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
-        echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Modificar</a><hr>";
+        echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Actuacio</a>";
+        echo "<a href='descripcio_actuacions.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Descripcios</a><hr>";
+        
     }
 } else {
     echo "<p>No hi ha cap incidència amb aquests filtres.</p>";
@@ -88,5 +106,35 @@ if ($result && $result->num_rows > 0) {
 $conn->close();
 ?>
 </fieldset>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const filtreEmpleat = document.getElementById('filtreEmpleat');
+    const filtreEstat = document.getElementById('filtreEstat');
+    const filtrePrioritat = document.getElementById('filtrePrioritat');
+    const incidencies = document.querySelectorAll('.incidencia');
+
+    function filtrar() {
+        const empleatSeleccionat = filtreEmpleat.value;
+        const estatSeleccionat = filtreEstat.value;
+        const prioritatSeleccionada = filtrePrioritat.value;
+
+        incidencies.forEach(incidencia => {
+            const empleat = incidencia.getAttribute('data-empleat');
+            const estat = incidencia.getAttribute('data-estat');
+            const prioritat = incidencia.getAttribute('data-prioritat');
+
+            const mostrar =
+                (empleatSeleccionat === '' || empleat === empleatSeleccionat) &&            
+                (estatSeleccionat === '' || estat === estatSeleccionat) &&
+                (prioritatSeleccionada === '' || prioritat === prioritatSeleccionada);
+
+            incidencia.style.display = mostrar ? 'block' : 'none';
+        });
+    }
+    filtreEmpleat.addEventListener('change', filtrar);
+    filtreEstat.addEventListener('change', filtrar);
+    filtrePrioritat.addEventListener('change', filtrar);
+});
+</script>
 </body>
 </html>

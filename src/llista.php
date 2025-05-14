@@ -13,13 +13,10 @@ require_once 'connection.php';
 <header>
     <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="tecnic.php">TECNIC</a></button>
-        <button type="button" class="btn btn-primary"><a href="crear_tecnic.php">FORMULARI DE INICIDÈNCIES</a></button>
-        <button type="button" class="btn btn-primary"><a href="asignar.php">FORMULARI DE INICIDÈNCIES NO ASIGNADES</a></button>
     </div> 
     <h1>LLISTAT DE INCIDÈNCIES</h1>
 </header>
 
-<!-- Filtres amb JavaScript -->
 <fieldset class="filtre">
     <label for="filtreEmpleat">Filtrar per Empleat:</label>
     <select id="filtreEmpleat">
@@ -84,7 +81,8 @@ if ($result->num_rows > 0) {
         echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
         echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
-        echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Modificar</a><hr>";
+        echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Actuacio</a>";
+        echo "<a href='descripcio_actuacions_tecnic.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Descripcios</a><hr>";
         echo "</p></div>";
     }
 } else {
@@ -96,8 +94,6 @@ $conn->close();
 </fieldset>
 
 
-
-<!-- JavaScript del filtre -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const filtreEmpleat = document.getElementById('filtreEmpleat');

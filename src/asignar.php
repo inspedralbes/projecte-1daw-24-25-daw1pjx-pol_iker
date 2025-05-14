@@ -33,7 +33,7 @@ $result = $conn->query($sql);
 <header>
         <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
-            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
+            <button type="button" class="btn btn-primary"><a href="llista_admin.php">LLISTA DE INICIDÈNCIES</a></button>
 
         </div> 
         <h1>FORMULARI DE INICIDÈNCIES </h1>
