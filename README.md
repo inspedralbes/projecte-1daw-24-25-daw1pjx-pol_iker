@@ -10,7 +10,8 @@ Pantalla Usuari
 ![Captura de pantalla a 2025-05-13 08-36-53](https://github.com/user-attachments/assets/99405531-6581-43f7-9052-60ff79c5ae76)
 
 Pantalla Tecnic
-![Captura de pantalla a 2025-05-13 08-47-24](https://github.com/user-attachments/assets/a6eb4b28-6e5f-4171-b604-8a548612d9ba)
+
+[TECNIC.pdf](https://github.com/user-attachments/files/20212953/TECNIC.pdf)
 
 
 Disseny del model E-R (Entitat-Relació)
