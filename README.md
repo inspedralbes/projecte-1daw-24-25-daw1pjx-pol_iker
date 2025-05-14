@@ -19,4 +19,5 @@ Disseny del model E-R (Entitat-Relació)
 
 Diagrama software
 
-![Diagrama arquitectura Paginas web](https://github.com/user-attachments/assets/e1c4c3f8-89c6-4fad-9218-21e65b37a989)
+![diagrama simple de l'arquitectura del sistema G3 drawio](https://github.com/user-attachments/assets/74df1998-d715-4a9e-b554-9d3847ba0914)
+
