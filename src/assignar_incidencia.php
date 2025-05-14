@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Llistar empleats  y Prioritats 
-$empleats = $conn->query("SELECT DNI, Nom FROM Empleat");
+$empleats = $conn->query("SELECT DNI, Nom , Rol_ID FROM Empleat WHERE Rol_ID = 2 " );
 $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 
 ?>
