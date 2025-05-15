@@ -5,6 +5,7 @@ require_once 'connection.php';
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Llistat d'incidències</title>
     <link rel="stylesheet" href="proyecte.css">
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
@@ -19,7 +20,6 @@ require_once 'connection.php';
     <h1>LLISTAT DE INCIDÈNCIES</h1>
 </header>
 
-<!-- Filtres -->
 <fieldset class="filtre">
     <form method="GET" action="">
         <label for="filtreEstat">Filtrar per estat:</label>

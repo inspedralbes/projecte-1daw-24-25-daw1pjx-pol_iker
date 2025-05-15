@@ -5,3 +5,15 @@ Swal.fire({
     confirmButtonText: 'D\'acord'
   });
   
+  const tarjetas = document.querySelectorAll('.tarjeta');
+
+  tarjetas.forEach(tarjeta => {
+    tarjeta.addEventListener('mouseenter', () => {
+      tarjeta.classList.add('activa');
+    });
+  
+    tarjeta.addEventListener('mouseleave', () => {
+      tarjeta.classList.remove('activa');
+    });
+  });
+  

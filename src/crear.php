@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulari de Incidències</title>
     <link rel="stylesheet" href="proyecte.css">
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="descripcio">Descripció de la incidència:</label><br>
             <textarea rows="5" cols="50" style="resize: none;" name="descripcio" id="descripcio"></textarea><br><br>
 
-            <button type="submit">ENVIAR</button>
+            <button type="submit" id="btnEnviar">ENVIAR</button>
         </form>
     </fieldset>
 

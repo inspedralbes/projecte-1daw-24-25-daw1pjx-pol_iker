@@ -25,6 +25,7 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <title>Descripcions de la Incidència <?php echo htmlspecialchars($id_incidencia); ?></title>
     <link rel="stylesheet" href="proyecte.css">
+    <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -39,6 +40,7 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<p><strong>Línia:</strong> " . htmlspecialchars($row["linia_incidencia"]) . "<br>";
+        echo "<p><strong>Tecnic:</strong> " . htmlspecialchars($row["linia_incidencia"]) . "<br>";
         echo "<strong>Descripció del tècnic:</strong> " . htmlspecialchars($row["descripcio"]) . "<br>";
         echo "<strong>Temps requerit:</strong> " . htmlspecialchars($row["temp_requeit"]) . " minuts<br>";
         echo "<strong>Data de l'actuació:</strong> " . htmlspecialchars($row["data_actuacio"]) . "<br><hr>";

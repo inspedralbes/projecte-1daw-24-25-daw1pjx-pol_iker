@@ -4,13 +4,13 @@ require_once 'connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['ID'];
 
-    // Comprobamos que los campos necesarios estén completos
+  
     if (!empty($_POST['NovaDescripcio']) && !empty($_POST['Temps']) && !empty($_POST['NouEstat'])) {
         $nova_descripcio = $_POST['NovaDescripcio'];
         $temps = $_POST['Temps'];
         $nou_estat = $_POST['NouEstat'];
 
-        // Obtenemos el siguiente linia_incidencia disponible para este id_incidencia
+      
         $sql_max = "SELECT COALESCE(MAX(linia_incidencia), 0) + 1 AS next_linia 
                     FROM actuacio_de_incidencia 
                     WHERE id_incidencia = ?";
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $linia_incidencia = $row_max['next_linia'];
         $stmt_max->close();
 
-        // Insertamos la nueva actuación en la tabla actuacio_de_incidencia
+      
         $sql_insert = "INSERT INTO actuacio_de_incidencia (id_incidencia, linia_incidencia, descripcio, temp_requeit, estat_incidencia)
                        VALUES (?, ?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($sql_insert);
@@ -31,14 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_insert->close();
     }
 
-    // Redirigimos a la página de confirmación después de la inserción
+    
     header("Location: confirmat.html");
     exit();
 } elseif (isset($_GET['ID'])) {
     $id = $_GET['ID'];
 
     if (is_numeric($id)) {
-        // Cargar los estados para el select
+        
         $estats = [];
         $estat_sql = "SELECT ID, Estat FROM Estat";
         $estat_result = $conn->query($estat_sql);
@@ -54,20 +54,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Afegir actuació tècnica</title>
     <link rel="stylesheet" href="proyecte.css">
+    <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <div class="btn-group">
-            <button><a href="index.php">PÀGINA INICIAL</a></button>
-            <button><a href="crear.php">FORMULARI D’INCIDÈNCIES</a></button>
-            <button><a href="llista.php">LLISTA D’INCIDÈNCIES</a></button>
-        </div> 
-        <h1>Afegir actuació tècnica a la incidència</h1>
-    </header>
+<header>
+ 
+  <div class="btn-group">
+    <button><a href="llista.php">LLISTAT DE INCIDÈNCIES</a></button>
+    <h1>Actuacions tècniques de la incidència</h1>
+  </div>
+</header>
 
     <form method="POST" id="form">
         <fieldset>
-            <h2>Incidència ID <?php echo htmlspecialchars($id); ?></h2>
+            <h1>Incidència ID <?php echo htmlspecialchars($id); ?></h1>
             <input type="hidden" name="ID" value="<?php echo htmlspecialchars($id); ?>">
 
             <h3>Afegir actuació tècnica</h3>
@@ -108,6 +108,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (NouEstat === '') {
                 errors.push("Has de seleccionar un estat per l'actuació.");
             }
+
+            if(Temps === '')
+                errors.push("Has de posar el temps requerit.");
+            }   
 
             if (errors.length > 0) {
                 alert(errors.join('\n'));

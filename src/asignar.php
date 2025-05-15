@@ -25,6 +25,7 @@ $result = $conn->query($sql);
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incidències No Assignades</title>
     <link rel="stylesheet" href="proyecte.css">
      <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">

@@ -18,24 +18,23 @@
 
     <div class="container mt-5 d-flex justify-content-center">
         <div class="row g-4" style="max-width: 1000px; margin-top: 60px;"> 
-
-          <div class="col-md-6" id="tarjeta">
-            <a href="index.php">
-            <div class="card text-center">
-              <div class="card-body">
-              <img src="exit2.png" width="232px"   class="mb-3" alt="Formulario">
-                <h5 class="card-title">LOGIN</h5>
-                <p class="card-text"></p>
-              </div>
-            </div>
-            </a>
-          </div>
           <div class="col-md-6" id="tarjeta">
               <a href="llista.php">
             <div class="card text-center">
               <div class="card-body">
                 <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
                 <h5 class="card-title">LLISTAT</h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-md-6" id="tarjeta">
+            <a href="index.php">
+            <div class="card text-center">
+              <div class="card-body">
+              <img src="exit2.png" width="232px"   class="mb-3" alt="Formulario">
+                <h5 class="card-title">LOG OUT</h5>
                 <p class="card-text"></p>
               </div>
             </div>

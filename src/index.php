@@ -19,7 +19,7 @@
     <div class="container mt-5 d-flex justify-content-center">
         <div class="row g-4" style="max-width: 1000px; margin-top: 60px;"> 
 
-          <div class="col-md-4" id="tarjeta">
+          <div class="col-md-4" class="tarjeta">
             <a href="usuari.php">
             <div class="card text-center">
               <div class="card-body">
@@ -30,7 +30,7 @@
             </div>
             </a>
           </div>
-          <div class="col-md-4" id="tarjeta">
+          <div class="col-md-4"class="tarjeta">
               <a href="tecnic.php">
             <div class="card text-center">
               <div class="card-body">
@@ -41,7 +41,7 @@
             </div>
             </a>
           </div>
-          <div class="col-md-4" id="tarjeta">
+          <div class="col-md-4" class="tarjeta">
               <a href="admin.php">
             <div class="card text-center">
               <div class="card-body">

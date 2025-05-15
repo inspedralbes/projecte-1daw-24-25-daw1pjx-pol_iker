@@ -5,6 +5,7 @@ require_once 'connection.php';
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Llistat d'incidències</title>
     <link rel="stylesheet" href="proyecte.css">
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
@@ -95,8 +96,7 @@ if ($result && $result->num_rows > 0) {
         echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"] ?? '') . "<br>";
         echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"] ?? '') . "<br>";        
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
-        echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Actuacio</a>";
-        echo "<a href='descripcio_actuacions.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Descripcios</a><hr>";
+        echo "<a href='descripcio_actuacions.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>descripcions</a><hr>";
         
     }
 } else {
