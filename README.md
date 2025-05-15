@@ -15,7 +15,7 @@ Pantalla Tecnic
 
 
 Disseny del model E-R (Entitat-Relació)
-![Projecte Disseny BDD](https://github.com/user-attachments/assets/d7ec9feb-ea3e-4f1f-a920-e080c2fc0dc0)
+![Projecte Disseny BDD](https://github.com/user-attachments/assets/fff194b0-2e1f-4a0f-bd69-6fc29e99edc2)
 
 
 Diagrama software
