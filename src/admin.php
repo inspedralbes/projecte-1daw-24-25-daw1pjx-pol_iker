@@ -1,4 +1,9 @@
 <?php
+require 'connection_Mongo.php';  // Incluir la función para registrar logs
+
+// Registrar el log cuando el usuario entra en la página index
+registrarLog('/admin.php');
+
 ?>
 
 <!DOCTYPE html>

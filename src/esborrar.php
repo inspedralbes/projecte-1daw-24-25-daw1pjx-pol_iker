@@ -1,19 +1,23 @@
 <?php
 // Incluye la conexión a la base de datos
 require_once 'connection.php';
+require 'connection_Mongo.php';  // Incluir la función para registrar logs
+
+// Registrar el log antes de cualquier salida HTML
+registrarLog('/esborrar.php');
 
 // Comprobar si se ha enviado el formulario de borrado (método POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['ID'];
-    
+
     // Verificar que el ID sea válido (un número entero)
     if (is_numeric($id)) {
-        
+
         // Eliminar las actuaciones asociadas primero
         $sql_actuacions = "DELETE FROM actuacio_de_incidencia WHERE id_incidencia = ?";
         $stmt_act = $conn->prepare($sql_actuacions);
         $stmt_act->bind_param("i", $id);
-        
+
         // Ejecutar la consulta para eliminar las actuaciones
         if (!$stmt_act->execute()) {
             echo "<p class='error'>Error al eliminar actuacions: " . htmlspecialchars($stmt_act->error) . "</p>";
@@ -28,9 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la consulta para eliminar la incidencia
         if ($stmt->execute()) {
             $stmt->close();
+            
+            echo "<p>Redirigiendo a esborrada.php...</p>";
             // Redirigir a una página de confirmación de borrado
-            header("Location: esborrada.html");
-            exit();
+            header("Location: esborrada.php");
+            exit(); // Importante para evitar que el script continúe ejecutándose
         } else {
             echo "<p class='error'>Error al esborrar l'incidència: " . htmlspecialchars($stmt->error) . "</p>";
             $stmt->close();
@@ -54,7 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <div class="btn-group">
+            <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
             <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
+            <button type="button" class="btn btn-primary"><a href="crear.php">FORMULARI INCIDENCIES</a></button>
         </div>
         <h1>ESBORRAR INCIDÈNCIA</h1>
     </header>
@@ -63,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mostrar el formulario de confirmación si se ha recibido el ID por GET
     if (isset($_GET['ID'])) {
         $id = $_GET['ID'];
-        
+
         // Verificar si el ID es válido
         if (is_numeric($id)) {
             // Consultar la incidencia a eliminar

@@ -1,4 +1,7 @@
 <?php
+require 'connection_Mongo.php';  // Incluir la función para registrar logs
+
+registrarLog('/usuari.php');
 ?>
 
 <!DOCTYPE html>

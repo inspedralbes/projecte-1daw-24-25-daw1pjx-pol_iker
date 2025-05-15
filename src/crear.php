@@ -1,6 +1,10 @@
 <?php
 require "connection.php";
 
+require 'connection_Mongo.php';  // Incluir la función para registrar logs
+
+registrarLog('/crear.php');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $nom = $_POST['nom'];

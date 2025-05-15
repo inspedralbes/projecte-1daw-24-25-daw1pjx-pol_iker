@@ -1,5 +1,10 @@
 <?php
 require_once 'connection.php';
+require 'connection_Mongo.php';  // Incluir la función para registrar logs
+
+registrarLog('/modificar.php');
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['ID'];
@@ -52,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Afegir actuació tècnica</title>
     <link rel="stylesheet" href="proyecte.css">
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">

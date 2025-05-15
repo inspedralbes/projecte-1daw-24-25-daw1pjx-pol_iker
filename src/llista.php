@@ -1,5 +1,9 @@
 <?php
 require_once 'connection.php';
+require 'connection_Mongo.php';  // Incluir la función para registrar logs
+
+registrarLog('/llista.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="ca">
