@@ -95,7 +95,7 @@ if ($result && $result->num_rows > 0) {
         echo "<strong>Prioritat:</strong> <span style='color: $color; font-weight:bold;'>" . htmlspecialchars($row["PrioritatText"] ?? 'No assignat') . "</span><br>";
         echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"] ?? '') . "<br>";
         echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"] ?? '') . "<br>";        
-        echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
+        echo "<a href='esborrar_admin.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
         echo "<a href='descripcio_actuacions.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>descripcions</a><hr>";
         
     }

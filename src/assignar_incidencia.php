@@ -40,6 +40,7 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignar Incidència</title>
     <link rel="stylesheet" href="proyecte.css">
     <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
@@ -48,8 +49,6 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 <body>
 <header>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary"><a href="index.php">PAGINA INICIAL</a></button>
-            <button type="button" class="btn btn-primary"><a href="llista.php">LLISTA DE INICIDÈNCIES</a></button>
             <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTA DE INICIDÈNCIES NO ASSIGNADES</a></button>
         </div> 
         <h1>FORMULARI DE INICIDÈNCIES </h1>
