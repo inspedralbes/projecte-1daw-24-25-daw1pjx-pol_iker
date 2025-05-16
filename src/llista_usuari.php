@@ -74,15 +74,19 @@ $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
-        echo "<strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"] ?? 'No trobat') . "<br>";
-        echo "<strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "<br>";
-        echo "<strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"] ?? 'No assignat') . "<br>";
-        echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "<br>";
-        echo "<strong>Prioritat:</strong> " . htmlspecialchars($row["PrioritatText"] ?? 'Sense prioritat') . "<br>";
-        echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
-        echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<hr>";
+        echo "<div class='ticket'>";
+        echo "<div class='ID'><strong>ID:</strong> " . htmlspecialchars($row["ID"]) . "</div>";
+        echo "<div class='camp'><strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"] ?? 'No trobat') . "</div>";
+        echo "<div class='camp'><strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "</div>";
+        echo "<div class='camp'><strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"] ?? 'No assignat') . "</div>";
+        echo "<div class='camp'><strong>Estat:</strong> " . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "</div>";
+        echo "<div class='camp'><strong>Prioritat:</strong> " . htmlspecialchars($row["PrioritatText"] ?? 'Sense prioritat') . "</div>";
+        echo "<div class='camp'><strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "</div>";
+        echo "<div class='camp'><strong>Descripció:</strong></div>";
+        echo "<div class='descripcio'>" . nl2br(htmlspecialchars($row["Descripcio"])) . "</div>";
+        echo "</div>"; // fin .ticket
     }
+      
 } else {
     echo "<p>No hi ha cap incidència amb aquests filtres.</p>";
 }
