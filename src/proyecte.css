@@ -204,6 +204,15 @@ p {
     color: green !important;
     font-weight: bold;
 }
+
+.llistat_no_asignades td {
+    white-space: pre-wrap;  /* Permite saltos de línea y quiebra automática */
+    word-wrap: break-word;  /* Rompe palabras largas para evitar desbordes */
+    max-width: 500px;       /* Opcional, limita ancho para mejor legibilidad */
+}
+
+
+
 @media (max-width: 768px) {
     fieldset, .llistat, .llistat_no_asignades {
       width: 95% !important;
@@ -268,4 +277,48 @@ p {
     }
   }
   
-  
+
+.ticket {
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+    color: #333;
+    position: relative;
+        margin-top: 15px;
+
+}
+
+.camp {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.descripcio {
+    background-color: rgb(212, 250, 255);
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #333;
+}
+.ID {
+   
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555555;
+    background: #76adda;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-top: 2px;
+
+}
+
