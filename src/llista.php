@@ -76,19 +76,22 @@ if ($result->num_rows > 0) {
             case 'Mitja': $color = 'orange'; break;
             case 'Baix': $color = 'rgb(31, 122, 140); '; break ; 
 }
-        echo "<div class='incidencia' data-empleat='" . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "' data-estat='" . htmlspecialchars($row["EstatText"]) . "' data-prioritat='" . htmlspecialchars($row["PrioritatText"]) . "'>";
-        echo "<p><strong>ID:</strong> " . $row["ID"] . "<br>";
-        echo "<strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"]) . "<br>";
-        echo "<strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "<br>";
-        echo "<strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"]) . "<br>";
-        echo "<strong>Estat:</strong> " . htmlspecialchars($row["EstatText"]) . "<br>";
-        echo "<strong>Prioritat:</strong> <span style='color: $color; font-weight:bold;'>" . htmlspecialchars($row["PrioritatText"]) . "</span><br>";
-        echo "<strong>Descripció:</strong> " . htmlspecialchars($row["Descripcio"]) . "<br>";
-        echo "<strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "<br>";
+        echo "<div class='incidencia' data-empleat='" . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "' data-estat='" . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "' data-prioritat='" . htmlspecialchars($row["PrioritatText"] ?? 'No assignat') . "'>";
+        echo "<div class='ticket' style='border: 3px solid $color; padding-left: 10px;'>";
+        echo "<div class='ID'><strong>ID:</strong> " . htmlspecialchars($row["ID"]) . "</div>";
+        echo "<div class='camp'><strong>Usuari:</strong> " . htmlspecialchars($row["UsuariNom"] ?? 'No trobat') . "</div>";
+        echo "<div class='camp'><strong>Empleat:</strong> " . htmlspecialchars($row["NomEmpleat"] ?? 'No assignat') . "</div>";
+        echo "<div class='camp'><strong>Departament:</strong> " . htmlspecialchars($row["Nom_Departament"] ?? 'No assignat') . "</div>";
+        echo "<div class='camp'><strong>Estat:</strong> " . htmlspecialchars($row["EstatText"] ?? 'Sense estat') . "</div>";
+        echo "<div class='camp'><strong>Prioritat:</strong> <span style='color: $color; font-weight:bold;'>" . htmlspecialchars($row["PrioritatText"] ?? 'No assignat') . "</span></div>";
+        echo "<div class='camp'><strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "</div>";
+        echo "<div class='camp'><strong>Descripció:</strong></div>";
+        echo "<div class='descripcio'>" . nl2br(htmlspecialchars($row["Descripcio"])) . "</div>";
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
         echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Actuacio</a>";
         echo "<a href='descripcio_actuacions_tecnic.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>descripcions</a><hr>";
-        echo "</p></div>";
+        echo "</div>"; // fin .ticket
+        echo "</div>"; 
     }
 } else {
     echo "<p>No hi ha cap incidència per mostrar.</p>";
