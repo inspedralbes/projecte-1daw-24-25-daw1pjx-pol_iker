@@ -2,25 +2,21 @@
 require 'vendor/autoload.php';
 
 function registrarLog($urlVisitada) {
-    // Establecer la zona horaria correcta
     date_default_timezone_set('Europe/Madrid');
 
     try {
-        // Conectar con la base de datos MongoDB
-        $client = new MongoDB\Client("mongodb+srv://projecte_Iker_Ricardo_Pol:Pol-Ricardo-Iker@projectemongo.5pcntao.mongodb.net/?retryWrites=true&w=majority&appName=ProjecteMongo");
-        $db = $client->projecte_Iker_Ricardo_Pol;
+        $client = new MongoDB\Client("mongodb+srv://admin:secure1234@cluster0.qdhihk6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+        $db = $client->ProjecteFinal;
         $logsCollection = $db->logs;
 
-        // Obtener el usuario (si está autenticado)
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'no autenticado';
-
-        // Obtener el timestamp
         $timestamp = date("Y-m-d H:i:s");
+        $navegador = $_SERVER['HTTP_USER_AGENT'] ?? 'desconocido';
 
-        // Obtener el navegador
-        $navegador = $_SERVER['HTTP_USER_AGENT'];
-
-        // Crear el registro del log
         $log = [
             'url_visitada' => $urlVisitada,
             'usuari' => $usuario,
@@ -28,12 +24,9 @@ function registrarLog($urlVisitada) {
             'navegador' => $navegador
         ];
 
-        // Insertar el log en la base de datos
         $logsCollection->insertOne($log);
 
     } catch (Exception $e) {
-        echo "Error al conectar con MongoDB: " . $e->getMessage();
+        error_log("Error al conectar con MongoDB: " . $e->getMessage());
     }
 }
-?>
-

@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     
-    header("Location: confirmat.html");
+    header("Location: confirmat.php");
     exit();
 } elseif (isset($_GET['ID'])) {
     $id = $_GET['ID'];

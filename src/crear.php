@@ -1,9 +1,13 @@
 <?php
 require "connection.php";
-
 require 'connection_Mongo.php';  // Incluir la función para registrar logs
 
 registrarLog('/crear.php');
+
+// Verificar si los headers ya se han enviado
+if (headers_sent($file, $line)) {
+    die("⚠ Error: Headers already sent in $file on line $line");
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -11,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $departament_text = trim($_POST['departament']);
     $descripcio = $_POST['descripcio'];
 
-    
     $dept_stmt = $conn->prepare("SELECT ID FROM Departament WHERE Nom_Departament = ?");
     $dept_stmt->bind_param("s", $departament_text);
     $dept_stmt->execute();
@@ -24,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $estat_id = 1;
 
-   
     $check_user_stmt = $conn->prepare("SELECT DNI FROM Usuari WHERE DNI = ?");
     $check_user_stmt->bind_param("s", $nom);
     $check_user_stmt->execute();
@@ -37,13 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $check_user_stmt->close();
 
-  
     $empleat_dni = null;
     $stmt = $conn->prepare("INSERT INTO Incidencies (Estat, Empleat, Usuari, Departament, Descripcio, Fecha) VALUES (?, ?, ?, ?, ?, CURDATE())");
     $stmt->bind_param("iisss", $estat_id, $empleat_dni, $nom, $departament_id, $descripcio);
 
     if ($stmt->execute()) {
-        header("Location: confirmat.html");
+        header("Location: confirmat.php");
         exit();
     } else {
         echo "Error: " . $stmt->error;

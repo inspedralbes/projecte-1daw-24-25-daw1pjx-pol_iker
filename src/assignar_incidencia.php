@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             $stmt->close();
-            header("Location: confirmat.html");
+            header("Location: confirmat.php");
             exit(); // Assegurem que no es continua després de la redirecció
         } else {
             echo "<p class='error'>Error en actualitzar: " . htmlspecialchars($stmt->error) . "</p>";
