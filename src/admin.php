@@ -23,33 +23,44 @@ registrarLog('/admin.php');
 
     <div class="container mt-5 d-flex justify-content-center">
         <div class="row g-4" style="max-width: 1000px; margin-top: 60px;"> 
-          <div class="col-md-4" id="tarjeta">
+          <div class="col-md-3" id="tarjeta">
               <a href="llista_admin.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="llista2.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
+                <img src="llista2.png" width="200px" class="mx-auto d-block mb-3" alt="Llista">
                 <h5 class="card-title">LLISTAT</h5>
                 <p class="card-text"></p>
               </div>
             </div>
             </a>
           </div>
-          <div class="col-md-4" id="tarjeta">
+          <div class="col-md-3" id="tarjeta">
               <a href="asignar.php">
             <div class="card text-center">
               <div class="card-body">
-                <img src="modificar.png" width="265px" class="mx-auto d-block mb-3" alt="Llista">
+                <img src="modificar.png" width="200px" class="mx-auto d-block mb-3" alt="Llista">
                 <h5 class="card-title">ASIGNAR</h5>
                 <p class="card-text"></p>
               </div>
             </div>
             </a>
           </div>
-          <div class="col-md-4" id="tarjeta">
-            <a href="index.php">
+          <div class="col-md-3" id="tarjeta">
+            <a href="informe_tecnic.php">
             <div class="card text-center">
               <div class="card-body">
-              <img src="exit2.png" width="232px"   class="mb-3" alt="Formulario">
+              <img src="informe.png" width="200PX"   class="mb-3" alt="Formulario">
+                <h5 class="card-title">INFORME</h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-md-3" id="tarjeta">
+              <a href="index.php">
+            <div class="card text-center">
+              <div class="card-body">
+                <img src="exit2.png" width="180px" class="mx-auto d-block mb-3" alt="Llista">
                 <h5 class="card-title">LOG OUT</h5>
                 <p class="card-text"></p>
               </div>
