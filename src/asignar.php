@@ -58,6 +58,8 @@ $result = $conn->query($sql);
             <th>Estat</th>
             <th>Prioritat</th>
             <th>Data</th>
+            <th>Acció</th>  <!-- Nueva columna para el botón -->
+
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>
             <tr>
@@ -65,12 +67,13 @@ $result = $conn->query($sql);
                 <td><?= htmlspecialchars($row["Usuari"] ?? '') ?></td>
                 <td><?= htmlspecialchars($row["Empleat"] ?? 'NO ASIGNAT') ?></td>
                 <td><?= htmlspecialchars($row["Departament"] ?? '') ?></td>
-                <td><?= htmlspecialchars($row["Descripcio"] ?? '') ?></td>
+                <td><?= nl2br(htmlspecialchars($row["Descripcio"] ?? '')) ?></td>
                 <td><?= htmlspecialchars($row["Estat"] ?? '') ?></td>
                 <td><?= htmlspecialchars($row["Prioritat"] ?? 'NO ASIGNAT') ?></td>
                 <td><?= htmlspecialchars($row["Fecha"] ?? '') ?></td>
-                <td><a style="color: blue;" href="assignar_incidencia.php?id=<?= $row["ID"] ?>">Assignar</a></td>
-                </tr>
+                <td><a class="btn-assignar" href="assignar_incidencia.php?id=<?= $row["ID"] ?>">Assignar</a></td>
+
+            </tr>
 
         <?php endwhile; ?>
     </table>
