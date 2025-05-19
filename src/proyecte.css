@@ -8,8 +8,28 @@ body {
 h1 {
     text-align: center;
     text-shadow: 2px 2px black;
-    color: rgb(212, 250, 255) !important;
+    color: white !important;  /* Fuerza el color blanco */
     margin-top: 3rem;
+}
+
+h1.animar {
+    opacity: 0;
+    transform: translateY(-20px);
+    color: white !important;  /* También aquí para la animación */
+    animation: fadeSlideIn 1s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+    color: white !important;  /* Color blanco inicial */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    color: white !important;  /* Color blanco final */
+  }
 }
 
 header {
