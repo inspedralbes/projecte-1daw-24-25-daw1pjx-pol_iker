@@ -1,0 +1,344 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    background-image: url(imagenfondo.jpg);
+    background-color: rgb(134, 204, 201);
+}
+
+h1 {
+    text-align: center;
+    text-shadow: 2px 2px black;
+    color: white !important;  /* Fuerza el color blanco */
+    margin-top: 3rem;
+}
+
+h1.animar {
+    opacity: 0;
+    transform: translateY(-20px);
+    color: white !important;  /* También aquí para la animación */
+    animation: fadeSlideIn 1s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+    color: white !important;  /* Color blanco inicial */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    color: white !important;  /* Color blanco final */
+  }
+}
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(31, 122, 140, 0.63);
+    padding: 1.25rem; 
+    transition: top 0.3s; 
+    z-index: 1000; 
+}
+
+fieldset {
+    margin: 13.75rem auto 1.25rem auto;
+    width: 90%;
+    max-width: 37.5rem; 
+    background-color: azure;
+    border-radius: 1.25rem;
+    border-color: rgb(31, 122, 140);
+    text-align: center;
+    padding: 1.25rem; 
+    box-sizing: border-box;
+}
+
+fieldset > h1 {
+    color: #333;
+}
+
+label {
+    color: rgb(31, 122, 140);
+    font-family: monospace;
+    text-shadow: 1px 1px black;
+}
+
+input, textarea, select {
+    width: 100%;
+    max-width: 31.25rem; 
+    margin: 0.625rem 0; 
+    padding: 0.625rem; 
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+label::before {
+    content: "- ";
+    color: white;
+}
+
+button {
+    text-align: center;
+    color: rgb(225, 229, 242);
+    background-color: rgb(31, 122, 140);
+    border-radius: 0.625rem; 
+    box-shadow: 0.125rem 0.125rem black; 
+    font-family: monospace;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    margin: 0; 
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+div > a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    border: none;
+}
+
+#tarjeta:hover {
+    transform: translateY(-0.625rem); 
+}
+
+.validacio {
+    color: rgb(31, 122, 140);
+}
+
+.llistat {
+    margin: 13.75rem auto 1.25rem auto;
+    width: 90%;
+    max-width: 37.5rem; 
+    background-color: azure;
+    border-radius: 1.25rem; 
+    border-color: rgb(31, 122, 140);
+    text-align: center;
+    padding: 1.25rem; 
+    box-sizing: border-box;
+}
+
+.llistat {
+    width: 80%;
+    margin: 30vh auto 0; 
+    padding: 2rem; 
+    color: rgb(31, 122, 140); 
+    text-decoration: none;
+}
+
+.filtre {
+    position: absolute;
+    top: 2.5rem; 
+    left: 1.25rem; 
+    width: 15.625rem; 
+    background-color: #f2f2f2;
+    padding: 0.625rem; 
+    border-radius: 0.5rem; 
+    border: 0.0625rem solid #ccc; 
+    font-size: 0.875rem; 
+    z-index: 10;
+}
+
+.filtre label {
+    display: block;
+    margin-top: 0.625rem; 
+    font-size: 0.8125rem; 
+}
+
+.filtre select {
+    width: 100%;
+    padding: 0.25rem;
+    font-size: 0.8125rem; 
+    margin-top: 0.3125rem; 
+}
+
+.taula-incidencies {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3vh; 
+}
+
+.taula-incidencies th, .taula-incidencies td {
+    border: 0.0625rem solid #ddd; 
+    padding: 0.625rem; 
+    text-align: center; 
+}
+
+.taula-incidencies th {
+    background-color: #f2f2f2; 
+    font-weight: bold;
+}
+
+.taula-incidencies tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.taula-incidencies a {
+   color: rgb(31, 122, 140); 
+   text-decoration: none;
+}
+
+p {
+    text-align: center;
+    font-size: 1rem; 
+    color: #555;
+}
+
+.llistat_no_asignades {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.25rem; 
+    font-family: Arial, sans-serif;
+    font-size: 0.875rem; 
+}
+
+.llistat_no_asignades td {
+    border: 0.0625rem solid #ccc; 
+    padding: 0.625rem; 
+    text-align: left;
+}
+
+.llistat_no_asignades th {
+    background-color: #467ec9;
+    color: #333;
+    border: 0.0625rem solid #ccc;
+    padding: 0.625rem;
+    text-align: left;
+}
+
+.llistat_no_asignades tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.llistat_no_asignades a {
+    text-decoration: none;
+    color: green !important;
+    font-weight: bold;
+}
+
+.llistat_no_asignades td {
+    white-space: pre-wrap;  /* Permite saltos de línea y quiebra automática */
+    word-wrap: break-word;  /* Rompe palabras largas para evitar desbordes */
+    max-width: 500px;       /* Opcional, limita ancho para mejor legibilidad */
+}
+
+
+
+@media (max-width: 768px) {
+    fieldset, .llistat, .llistat_no_asignades {
+      width: 95% !important;
+      margin: 2rem auto !important;
+      padding: 1rem !important;
+      box-sizing: border-box;
+    }
+  
+    input, textarea, select {
+      width: 100% !important;
+      font-size: 1rem !important;
+    }
+  
+    button {
+      width: 100% !important;
+      padding: 1rem !important;
+      font-size: 1rem !important;
+    }
+  
+    .taula-incidencies, .llistat_no_asignades {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .taula-incidencies table, .llistat_no_asignades table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .taula-incidencies th, .taula-incidencies td,
+    .llistat_no_asignades th, .llistat_no_asignades td {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+  
+    form {
+      width: 100% !important;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+  
+    h1 {
+      font-size: 1.5rem !important;
+      text-align: center !important;
+      margin-top: 1rem !important;
+    }
+  
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+  
+    .btn-group button {
+      flex: 1 1 auto;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+
+.ticket {
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+    color: #333;
+    position: relative;
+        margin-top: 15px;
+
+}
+
+.camp {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.descripcio {
+    background-color: rgb(212, 250, 255);
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #333;
+}
+.ID {
+   
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555555;
+    background: #76adda;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-top: 2px;
+
+}
+
+
