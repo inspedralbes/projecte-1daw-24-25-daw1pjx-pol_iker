@@ -7,12 +7,17 @@ Diagrama casos d'us
 Esquema de pantallas de la aplicacio
 
 Pantalla Usuari
-![Captura de pantalla a 2025-05-13 08-36-53](https://github.com/user-attachments/assets/99405531-6581-43f7-9052-60ff79c5ae76)
+![Pantalla_Usuari](https://github.com/user-attachments/assets/38c8a050-e3e4-4f2c-94a7-c11323c2cd52)
+[Pantalla_Usuari.pdf](https://github.com/user-attachments/files/20303147/Pantalla_Usuari.pdf)
+
 
 Pantalla Tecnic
 
-[TECNIC.pdf](https://github.com/user-attachments/files/20212953/TECNIC.pdf)
 
+Pantalla Tecnic
+
+
+[TECNIC.pdf](https://github.com/user-attachments/files/20212953/TECNIC.pdf
 
 Disseny del model E-R (Entitat-Relació)
 
