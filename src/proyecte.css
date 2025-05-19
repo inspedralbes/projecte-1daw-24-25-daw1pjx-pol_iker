@@ -8,29 +8,10 @@ body {
 h1 {
     text-align: center;
     text-shadow: 2px 2px black;
-    color: white !important;  /* Fuerza el color blanco */
+    color: rgb(212, 250, 255) !important;
     margin-top: 3rem;
 }
 
-h1.animar {
-    opacity: 0;
-    transform: translateY(-20px);
-    color: white !important;  /* También aquí para la animación */
-    animation: fadeSlideIn 1s ease forwards;
-}
-
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-    color: white !important;  /* Color blanco inicial */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    color: white !important;  /* Color blanco final */
-  }
-}
 header {
     width: 100%;
     position: absolute;
@@ -339,6 +320,35 @@ p {
     border-radius: 5px;
     margin-top: 2px;
 
+}
+
+
+
+.taula_informes {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.taula_informes thead {
+    background-color: #1f7a8c;
+    color: #ffffff;
+}
+
+.taula_informes th,
+.taula_informes td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+}
+
+.taula_informes tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 
