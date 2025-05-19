@@ -53,5 +53,19 @@ try {
             </tbody>
         </table>
     </div>
+    <script>
+  // Seleccionamos todas las filas del tbody
+  const filas = document.querySelectorAll('table.llistat_no_asignades tbody tr');
+
+  filas.forEach(fila => {
+    fila.addEventListener('mouseenter', () => {
+      fila.style.backgroundColor = '#cceeff'; // color de resaltado al pasar el mouse
+      fila.style.cursor = 'pointer';
+    });
+    fila.addEventListener('mouseleave', () => {
+      fila.style.backgroundColor = 'white'; // vuelve al blanco original cuando quitas el mouse
+    });
+  });
+</script>
 </body>
 </html>
