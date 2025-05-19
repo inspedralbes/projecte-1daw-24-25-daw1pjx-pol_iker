@@ -1,11 +1,11 @@
 <?php
 require_once 'connection.php';
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php';  
 
 registrarLog('/asignar_incidencia.php');
 
 
-// Agafa l'ID de la incidència
+
 $id = $_GET['id'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->execute()) {
             $stmt->close();
             header("Location: confirmat.php");
-            exit(); // Assegurem que no es continua després de la redirecció
+            exit(); 
         } else {
             echo "<p class='error'>Error en actualitzar: " . htmlspecialchars($stmt->error) . "</p>";
             $stmt->close();
@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Llistar empleats  y Prioritats 
 $empleats = $conn->query("SELECT DNI, Nom , Rol_ID FROM Empleat WHERE Rol_ID = 2 " );
 $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
 

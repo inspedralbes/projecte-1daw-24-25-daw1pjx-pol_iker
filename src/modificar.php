@@ -1,6 +1,6 @@
 <?php
 require_once 'connection.php';
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php';
 
 registrarLog('/modificar.php');
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_insert->execute();
         $stmt_insert->close();
 
-        // UPDATE del estat de la incidència
+       
         $sql_update_estat = "UPDATE Incidencies SET estat = ? WHERE ID = ?";
         $stmt_update = $conn->prepare($sql_update_estat);
         $stmt_update->bind_param("ii", $nou_estat, $id);

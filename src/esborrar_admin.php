@@ -1,34 +1,33 @@
 <?php
-// Incluye la conexión a la base de datos
+
 require_once 'connection.php';
 
-// Comprobar si se ha enviado el formulario de borrado (método POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['ID'];
     
-    // Verificar que el ID sea válido (un número entero)
+ 
     if (is_numeric($id)) {
         
-        // Eliminar las actuaciones asociadas primero
+        
         $sql_actuacions = "DELETE FROM actuacio_de_incidencia WHERE id_incidencia = ?";
         $stmt_act = $conn->prepare($sql_actuacions);
         $stmt_act->bind_param("i", $id);
         
-        // Ejecutar la consulta para eliminar las actuaciones
+    
         if (!$stmt_act->execute()) {
             echo "<p class='error'>Error al eliminar actuacions: " . htmlspecialchars($stmt_act->error) . "</p>";
         }
         $stmt_act->close();
 
-        // Ahora eliminar la incidencia de la tabla Incidencies
+      
         $sql = "DELETE FROM Incidencies WHERE ID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
 
-        // Ejecutar la consulta para eliminar la incidencia
+        
         if ($stmt->execute()) {
             $stmt->close();
-            // Redirigir a una página de confirmación de borrado
+
             header("Location: esborrada.html");
             exit();
         } else {
@@ -36,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
         }
     } else {
-        // Si el ID no es válido, mostrar un error
+
         echo "<p class='error'>ID no vàlid.</p>";
     }
 }
@@ -60,13 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <?php
-    // Mostrar el formulario de confirmación si se ha recibido el ID por GET
+
     if (isset($_GET['ID'])) {
         $id = $_GET['ID'];
         
-        // Verificar si el ID es válido
+        
         if (is_numeric($id)) {
-            // Consultar la incidencia a eliminar
+            
             $sql = "SELECT ID FROM Incidencies WHERE ID = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $id);
@@ -74,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                // Mostrar el formulario de confirmación de borrado
+               
                 echo "<form method='POST' action='esborrar.php'>";
                 echo "<fieldset><h1>ELIMINAR INCIDÈNCIA</h1>";
                 echo "<p>Estàs segur que vols eliminar aquesta incidència amb ID: ". htmlspecialchars($id) . "?</p>";

@@ -17,8 +17,10 @@ registrarLog('/llista_admin.php');
 <body>
 <header>
     <div class="btn-group">
-        <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
-        <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTAT DE INICIDÈNCIES NO ASIGNADES</a></button>
+    <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
+    <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTAT DE INCIDENCIES NO ASIGNADES</a></button>
+    <button type="button" class="btn btn-primary"><a href="informe_tecnic.php">INFORME</a></button>
+    <button type="button" class="btn btn-primary"><a href="logs.php">LOGS</a></button>
     </div> 
     <h1>LLISTAT DE INCIDÈNCIES</h1>
 </header>
@@ -28,7 +30,8 @@ registrarLog('/llista_admin.php');
     <select id="filtreEmpleat">
         <option value="">Tots</option>
         <option value="Ricardo">Ricardo</option>
-        <option value="Joel">Joel</option>
+        <option value="Ermengol">Ermengol</option>
+        <option value="Pol">Pol</option>
         <option value="Iker">Iker</option>
     </select>    
 
@@ -57,7 +60,6 @@ registrarLog('/llista_admin.php');
 $estat = $_GET['estat'] ?? '';
 $prioritat = $_GET['prioritat'] ?? '';
 
-// CONSULTA corregida con LEFT JOINs para que NUNCA se excluyan incidències
 $sql = "SELECT i.ID, u.Nom AS UsuariNom , epl.Nom AS NomEmpleat, d.Nom_Departament,
                e.Estat AS EstatText, p.Nivel_de_Prioritat AS PrioritatText,
                i.Descripcio, i.Fecha
@@ -103,8 +105,8 @@ if ($result && $result->num_rows > 0) {
         echo "<div class='descripcio'>" . nl2br(htmlspecialchars($row["Descripcio"])) . "</div>";
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
         echo "<a href='descripcio_actuacions.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Descripcions</a>";
-        echo "</div>"; // fin .ticket
-        echo "</div>"; // fin .incidencia
+        echo "</div>";
+        echo "</div>"; 
         
     }
 } else {

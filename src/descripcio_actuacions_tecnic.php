@@ -1,6 +1,6 @@
 <?php
 require_once 'connection.php';
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php'; 
 registrarLog('/descripcio_actuacions_tecnic.php');
 
 $id_incidencia = $_GET['ID'] ?? null;

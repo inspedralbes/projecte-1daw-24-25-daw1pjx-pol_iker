@@ -1,7 +1,7 @@
 <?php
 require_once 'connection.php';
 
-// Consulta  preparada per tener les incidències obertes
+
 $sql = "
 SELECT 
     E.Nom AS Tecnic,
@@ -21,7 +21,7 @@ ORDER BY
     I.Fecha
 ";
 
-$result = $conn->query($sql);  // Executala consulta
+$result = $conn->query($sql); 
 ?>
 
 <!DOCTYPE html>

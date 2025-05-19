@@ -1,10 +1,9 @@
 <?php
 require_once 'connection.php';
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php';
 
 registrarLog('/asignar.php');
 
-// Consultar incidencias no asignadas (Empleat es NULL)
 $sql = "SELECT i.ID, 
                u.Nom AS Usuari, 
                epl.Nom AS Empleat, 
@@ -37,7 +36,9 @@ $result = $conn->query($sql);
 <header>
         <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
-            <button type="button" class="btn btn-primary"><a href="llista_admin.php">LLISTA DE INICIDÈNCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTAT DE INCIDENCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="informe_tecnic.php">INFORME</a></button>
+        <button type="button" class="btn btn-primary"><a href="logs.php">LOGS</a></button>
 
         </div> 
         <h1>FORMULARI DE INICIDÈNCIES </h1>
@@ -58,7 +59,7 @@ $result = $conn->query($sql);
             <th>Estat</th>
             <th>Prioritat</th>
             <th>Data</th>
-            <th>Acció</th>  <!-- Nueva columna para el botón -->
+            <th>Acció</th>
 
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>

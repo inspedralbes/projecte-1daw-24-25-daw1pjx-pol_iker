@@ -1,6 +1,6 @@
 <?php
 require_once 'connection.php';
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php';
 
 registrarLog('/llista.php');
 
@@ -23,11 +23,12 @@ registrarLog('/llista.php');
 </header>
 
 <fieldset class="filtre">
-    <label for="filtreEmpleat">Filtrar per Empleat:</label>
+<label for="filtreEmpleat">Filtrar per Empleat:</label>
     <select id="filtreEmpleat">
         <option value="">Tots</option>
         <option value="Ricardo">Ricardo</option>
-        <option value="Joel">Joel</option>
+        <option value="Ermengol">Ermengol</option>
+        <option value="Pol">Pol</option>
         <option value="Iker">Iker</option>
     </select>    
 
@@ -42,6 +43,7 @@ registrarLog('/llista.php');
     <label for="filtrePrioritat">Filtrar per prioritat:</label>
     <select id="filtrePrioritat">
         <option value="">Tots</option>
+        <option value="Alta">No assignat</option>
         <option value="Alta">Alta</option>
         <option value="Mitja">Mitja</option>
         <option value="Baixa">Baixa</option>
@@ -90,7 +92,7 @@ if ($result->num_rows > 0) {
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
         echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Actuacio</a>";
         echo "<a href='descripcio_actuacions_tecnic.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>descripcions</a>";
-        echo "</div>"; // fin .ticket
+        echo "</div>"; 
         echo "</div>"; 
     }
 } else {

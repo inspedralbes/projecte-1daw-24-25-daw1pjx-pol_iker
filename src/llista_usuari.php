@@ -51,7 +51,7 @@ registrarLog('/llistat_usuari.php');
 $estat = $_GET['estat'] ?? '';
 $prioritat = $_GET['prioritat'] ?? '';
 
-// CONSULTA corregida con LEFT JOINs para que NUNCA se excluyan incidències
+
 $sql = "SELECT i.ID, u.Nom AS UsuariNom , epl.Nom AS NomEmpleat, d.Nom_Departament,
                e.Estat AS EstatText, p.Nivel_de_Prioritat AS PrioritatText,
                i.Descripcio, i.Fecha
@@ -84,7 +84,7 @@ if ($result && $result->num_rows > 0) {
         echo "<div class='camp'><strong>Data:</strong> " . htmlspecialchars($row["Fecha"]) . "</div>";
         echo "<div class='camp'><strong>Descripció:</strong></div>";
         echo "<div class='descripcio'>" . nl2br(htmlspecialchars($row["Descripcio"])) . "</div>";
-        echo "</div>"; // fin .ticket
+        echo "</div>"; 
     }
       
 } else {

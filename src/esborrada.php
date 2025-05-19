@@ -1,6 +1,6 @@
 
 <?php
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php'; 
 
 registrarLog('/esborrada.php');
 

@@ -1,29 +1,29 @@
 <?php
-// Iniciar sesión lo más arriba posible
+
 session_start();
 
-// Incluir conexiones
+
 require_once 'connection.php';
 require_once 'connection_Mongo.php';
 
-// Registrar log
+
 registrarLog('/esborrar.php');
 
-// Buffer de salida para evitar errores con headers
+
 ob_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['ID'];
 
     if (is_numeric($id)) {
-        // Eliminar actuaciones
+       
         $sql_actuacions = "DELETE FROM actuacio_de_incidencia WHERE id_incidencia = ?";
         $stmt_act = $conn->prepare($sql_actuacions);
         $stmt_act->bind_param("i", $id);
         $stmt_act->execute();
         $stmt_act->close();
 
-        // Eliminar incidencia
+       
         $sql = "DELETE FROM Incidencies WHERE ID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-ob_end_flush(); // Enviar salida
+ob_end_flush(); 
 ?>
 <!DOCTYPE html>
 <html lang="ca">

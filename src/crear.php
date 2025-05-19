@@ -1,10 +1,10 @@
 <?php
 require "connection.php";
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+require 'connection_Mongo.php';  
 
 registrarLog('/crear.php');
 
-// Verificar si los headers ya se han enviado
+
 if (headers_sent($file, $line)) {
     die("⚠ Error: Headers already sent in $file on line $line");
 }
