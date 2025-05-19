@@ -322,3 +322,33 @@ p {
 
 }
 
+
+
+.taula_informes {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.taula_informes thead {
+    background-color: #1f7a8c;
+    color: #ffffff;
+}
+
+.taula_informes th,
+.taula_informes td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+}
+
+.taula_informes tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
