@@ -1,9 +1,9 @@
 <?php
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+session_start();
+$_SESSION['usuario'] = 'admin';
 
-// Registrar el log cuando el usuario entra en la página index
-registrarLog('/admin.php');
-
+require_once 'connection_Mongo.php';
+registrarLog($_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +56,17 @@ registrarLog('/admin.php');
             </div>
             </a>
           </div>
+           <div class="col-md-3" id="tarjeta">
+            <a href="logs.php">
+            <div class="card text-center">
+              <div class="card-body">
+              <img src="log.png" width="200PX"   class="mb-3" alt="Formulario">
+                <h5 class="card-title">LOGS</h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            </a>
+          </div>
           <div class="col-md-3" id="tarjeta">
               <a href="index.php">
             <div class="card text-center">
@@ -67,6 +78,7 @@ registrarLog('/admin.php');
             </div>
             </a>
           </div>
+         
         </div>
       </div>
 </body>

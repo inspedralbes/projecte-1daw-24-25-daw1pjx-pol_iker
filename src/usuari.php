@@ -1,7 +1,9 @@
 <?php
-require 'connection_Mongo.php';  // Incluir la función para registrar logs
+session_start();
+$_SESSION['usuario'] = 'usuari';
 
-registrarLog('/usuari.php');
+require_once 'connection_Mongo.php';
+registrarLog($_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE html>
