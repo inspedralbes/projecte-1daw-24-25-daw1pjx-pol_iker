@@ -1,7 +1,7 @@
 <?php
 require_once 'connection.php';
 
-// Consulta SQL preparada per obtenir les incidències obertes
+// Consulta  preparada per tener les incidències obertes
 $sql = "
 SELECT 
     E.Nom AS Tecnic,
@@ -21,7 +21,7 @@ ORDER BY
     I.Fecha
 ";
 
-$result = $conn->query($sql);  // Executem la consulta
+$result = $conn->query($sql);  // Executala consulta
 ?>
 
 <!DOCTYPE html>
@@ -37,16 +37,31 @@ $result = $conn->query($sql);  // Executem la consulta
     <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
         <button type="button" class="btn btn-primary"><a href="llista_admin.php">LLISTA DE INICIDÈNCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="asignar.php">ASIGNACIO DE INICIDÈNCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="logs.php">LOGS</a></button>
+
     </div> 
-    <h1>FORMULARI DE INICIDÈNCIES</h1>
+    <h1>INFORMES DE TECNIC</h1>
 </header>
 
 <fieldset>
 
+<fieldset class="filtre">
+    <label for="filtreEmpleat">Filtrar per Empleat:</label>
+    <select id="filtreEmpleat">
+        <option value="">Tots</option>
+        <option value="Ricardo">Ricardo</option>
+        <option value="Joel">Joel</option>
+        <option value="Iker">Iker</option>
+    </select> 
+</fieldset>
+
+
 <?php if ($result && $result->num_rows > 0): ?>
-    <table class ="taula_informes">
+    <table id="taulaInformes" class ="taula_informes">
         <thead>
-            <tr>
+            <tr class="incidencia">
+
                 <th>Tècnic</th>
                 <th>Incidència</th>
                 <th>Data inici</th>
@@ -61,7 +76,8 @@ $result = $conn->query($sql);  // Executem la consulta
                 $segons = round(($tempsTotal - $minuts) * 60);
                 $tempsFormat = sprintf("%02d:%02d", $minuts, $segons);
             ?>
-            <tr>
+      <tr class="incidencia" data-empleat="<?= htmlspecialchars($row['Tecnic'] ?? '') ?>">
+
                 <td><?= htmlspecialchars($row['Tecnic'] ?? '') ?></td>
                 <td><?= htmlspecialchars($row['Incidencia'] ?? '') ?></td>
                 <td><?= htmlspecialchars($row['DataInici'] ?? '') ?></td>
@@ -79,8 +95,43 @@ $result = $conn->query($sql);  // Executem la consulta
 if ($result) { $result->free(); }
 $conn->close();
 ?>
+<p id="noDataMessage" style="display:none; color: red; font-weight: bold;">
+  No hi ha dades amb aquest empleat.
+</p>
 
 </fieldset>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const filtreEmpleat = document.getElementById('filtreEmpleat');
+    const incidencies = document.querySelectorAll('tbody tr.incidencia');
+    const noDataMessage = document.getElementById('noDataMessage');
+    const taulaInformes = document.getElementById('taulaInformes');
+
+    filtreEmpleat.addEventListener('change', function () {
+        const empleatSeleccionat = filtreEmpleat.value;
+        let visibleCount = 0;
+
+        incidencies.forEach(incidencia => {
+            const empleat = incidencia.getAttribute('data-empleat');
+            const mostrar = (empleatSeleccionat === '' || empleat === empleatSeleccionat);
+            incidencia.style.display = mostrar ? 'table-row' : 'none';
+            if (mostrar) visibleCount++;
+        });
+
+        if (visibleCount === 0) {
+            noDataMessage.style.display = 'block';
+            taulaInformes.style.display = 'none';
+        } else {
+            noDataMessage.style.display = 'none';
+            taulaInformes.style.display = 'table';
+        }
+    });
+});
+</script>
+
+
 
 </body>
 </html>
