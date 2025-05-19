@@ -16,8 +16,10 @@ Pantalla Tecnic
 [Pantalla_tecnic.pdf](https://github.com/user-attachments/files/20303387/Pantalla_tecnic.pdf)
 
 
+Pantalla Responsable/Admin
+![Pantalla_ResponsableAdmin](https://github.com/user-attachments/assets/11fd8184-7f12-4ada-bdf7-3b821a82b52b)
+[Pantalla_ResponsableAdmin.pdf](https://github.com/user-attachments/files/20303728/Pantalla_ResponsableAdmin.pdf)
 
-Pantalla Tecnic
 
 
 [TECNIC.pdf](https://github.com/user-attachments/files/20212953/TECNIC.pdf
