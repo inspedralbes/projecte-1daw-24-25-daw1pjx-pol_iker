@@ -12,6 +12,9 @@ Pantalla Usuari
 
 
 Pantalla Tecnic
+![Pantalla_tecnic](https://github.com/user-attachments/assets/681830d3-1039-4a25-a3b2-fcc8bae0a3cb)
+[Pantalla_tecnic.pdf](https://github.com/user-attachments/files/20303387/Pantalla_tecnic.pdf)
+
 
 
 Pantalla Tecnic
