@@ -107,5 +107,10 @@ $Prioritats = $conn->query("SELECT ID, Nivel_de_Prioritat FROM Prioritat");
             }
         });
     </script>
+     <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
+});
+</script>
 </body>
 </html>

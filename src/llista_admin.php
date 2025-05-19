@@ -18,9 +18,7 @@ registrarLog('/llista_admin.php');
 <header>
     <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
-        <button type="button" class="btn btn-primary"><a href="asignar.php">ASIGNACIO DE INICIDÈNCIES</a></button>
-        <button type="button" class="btn btn-primary"><a href="informe_tecnic.php">INFORMES</a></button>
-        <button type="button" class="btn btn-primary"><a href="logs.php">LOGS</a></button>
+        <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTAT DE INICIDÈNCIES NO ASIGNADES</a></button>
     </div> 
     <h1>LLISTAT DE INCIDÈNCIES</h1>
 </header>
@@ -105,8 +103,8 @@ if ($result && $result->num_rows > 0) {
         echo "<div class='descripcio'>" . nl2br(htmlspecialchars($row["Descripcio"])) . "</div>";
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
         echo "<a href='descripcio_actuacions.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Descripcions</a>";
-        echo "</div>"; 
-        echo "</div>"; 
+        echo "</div>"; // fin .ticket
+        echo "</div>"; // fin .incidencia
         
     }
 } else {
@@ -144,6 +142,27 @@ document.addEventListener('DOMContentLoaded', function () {
     filtreEmpleat.addEventListener('change', filtrar);
     filtreEstat.addEventListener('change', filtrar);
     filtrePrioritat.addEventListener('change', filtrar);
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tickets = document.querySelectorAll('.ticket');
+
+  tickets.forEach(ticket => {
+    ticket.addEventListener('mouseenter', () => {
+      ticket.style.transition = 'background-color 0.3s ease';
+      ticket.style.backgroundColor = 'rgba(200, 200, 200, 0.3)';
+    });
+
+    ticket.addEventListener('mouseleave', () => {
+      ticket.style.backgroundColor = '';
+    });
+  });
+});
+</script>
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
 });
 </script>
 </body>

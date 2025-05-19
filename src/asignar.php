@@ -29,7 +29,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASIGNACIO DE INCIDENCIES</title>
+    <title>Incidències No Assignades</title>
     <link rel="stylesheet" href="proyecte.css">
      <link rel="shortcut icon" href="pedralbres.ico" type="image/x-icon">
 </head>
@@ -37,12 +37,10 @@ $result = $conn->query($sql);
 <header>
         <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
-        <button type="button" class="btn btn-primary"><a href="llista_admin.php">LLISTA DE INICIDÈNCIES</a></button>
-        <button type="button" class="btn btn-primary"><a href="informe_tecnic.php">INFORMES</a></button>
-        <button type="button" class="btn btn-primary"><a href="logs.php">LOGS</a></button>
+            <button type="button" class="btn btn-primary"><a href="llista_admin.php">LLISTA DE INICIDÈNCIES</a></button>
 
         </div> 
-        <h1>ASIGNACIO DE INCIDENCIES</h1>
+        <h1>FORMULARI DE INICIDÈNCIES </h1>
     </header>
 
 
@@ -85,7 +83,12 @@ $result = $conn->query($sql);
 
 <?php $conn->close(); ?>
 </fieldset>
-
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
+});
+</script>
 </body>
 </html>
+
 

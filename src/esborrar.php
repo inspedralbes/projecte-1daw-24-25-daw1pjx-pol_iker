@@ -86,5 +86,10 @@ ob_end_flush(); // Enviar salida
         echo "<p class='error'>No s'ha especificat cap ID o és invàlid.</p>";
     }
     ?>
+     <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
+});
+</script>
 </body>
 </html>

@@ -34,13 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_insert->bind_param("iissi", $id, $linia_incidencia, $nova_descripcio, $temps, $nou_estat);
         $stmt_insert->execute();
         $stmt_insert->close();
-
-        // UPDATE del estat de la incidència
-        $sql_update_estat = "UPDATE Incidencies SET estat = ? WHERE ID = ?";
-        $stmt_update = $conn->prepare($sql_update_estat);
-        $stmt_update->bind_param("ii", $nou_estat, $id);
-        $stmt_update->execute();
-        $stmt_update->close();
     }
 
     
@@ -129,8 +122,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 alert(errors.join('\n'));
                 event.preventDefault();
             }
-        );
+        });
     </script>
+     <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
+});
+</script>
 </body>
 </html>
 

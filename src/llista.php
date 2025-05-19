@@ -148,5 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
+});
+</script>
 </body>
 </html>

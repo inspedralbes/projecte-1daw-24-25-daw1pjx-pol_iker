@@ -58,5 +58,10 @@ registrarLog($_SERVER['REQUEST_URI']);
           </div>
         </div>
       </div>
+       <script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('h1').classList.add('animar');
+});
+</script>
 </body>
 </html>

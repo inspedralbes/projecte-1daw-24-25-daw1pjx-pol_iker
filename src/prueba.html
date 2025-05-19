@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Animación CSS</title>
+<style>
+  h1 {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeSlideIn 1s ease forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Hola, esto aparece con animación</h1>
+</body>
+</html>
