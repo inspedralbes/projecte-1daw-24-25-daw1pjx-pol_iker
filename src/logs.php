@@ -27,6 +27,8 @@ try {
         <div class="btn-group">
         <button type="button" class="btn btn-primary"><a href="admin.php">ADMIN</a></button>
         <button type="button" class="btn btn-primary"><a href="llista_admin.php">LLISTA DE INICIDÈNCIES</a></button>
+        <button type="button" class="btn btn-primary"><a href="asignar.php">LLISTAT DE INCIDENCIES NO ASIGNADES</a></button>
+        <button type="button" class="btn btn-primary"><a href="informe_tecnic.php">INFORME</a></button>
         <h1>HISTORIAL DE LOGS</h1>    
     </div> 
     </header>

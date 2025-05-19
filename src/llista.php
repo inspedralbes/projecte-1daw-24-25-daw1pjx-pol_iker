@@ -89,7 +89,7 @@ if ($result->num_rows > 0) {
         echo "<div class='descripcio'>" . nl2br(htmlspecialchars($row["Descripcio"])) . "</div>";
         echo "<a href='esborrar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color:red; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Esborrar</a>";
         echo "<a href='modificar.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; margin-right:10px; background-color: rgb(31, 122, 140); color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>Actuacio</a>";
-        echo "<a href='descripcio_actuacions_tecnic.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>descripcions</a><hr>";
+        echo "<a href='descripcio_actuacions_tecnic.php?ID=" . $row["ID"] . "' style='display:inline-block; margin-top:10px; background-color: green; color:white; text-decoration:none; padding:8px 12px; border-radius:5px;'>descripcions</a>";
         echo "</div>"; // fin .ticket
         echo "</div>"; 
     }
@@ -130,6 +130,22 @@ document.addEventListener('DOMContentLoaded', function () {
     filtreEmpleat.addEventListener('change', filtrar);
     filtreEstat.addEventListener('change', filtrar);
     filtrePrioritat.addEventListener('change', filtrar);
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tickets = document.querySelectorAll('.ticket');
+
+  tickets.forEach(ticket => {
+    ticket.addEventListener('mouseenter', () => {
+      ticket.style.transition = 'background-color 0.3s ease';
+      ticket.style.backgroundColor = 'rgba(200, 200, 200, 0.3)';
+    });
+
+    ticket.addEventListener('mouseleave', () => {
+      ticket.style.backgroundColor = '';
+    });
+  });
 });
 </script>
 </body>

@@ -94,5 +94,21 @@ if ($result && $result->num_rows > 0) {
 $conn->close();
 ?>
 </fieldset>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tickets = document.querySelectorAll('.ticket');
+
+  tickets.forEach(ticket => {
+    ticket.addEventListener('mouseenter', () => {
+      ticket.style.transition = 'background-color 0.3s ease';
+      ticket.style.backgroundColor = 'rgba(200, 200, 200, 0.3)';
+    });
+
+    ticket.addEventListener('mouseleave', () => {
+      ticket.style.backgroundColor = '';
+    });
+  });
+});
+</script>
 </body>
 </html>
